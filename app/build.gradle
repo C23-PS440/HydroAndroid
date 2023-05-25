@@ -9,7 +9,7 @@ plugins {
 }
 
 android {
-    namespace 'com.capstone.hydroandroid'
+//    namespace 'com.capstone.hydroandroid'
     compileSdk 33
 
     defaultConfig {
