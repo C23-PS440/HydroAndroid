@@ -11,7 +11,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
-private const val BASE_URL = "https://e677-125-166-118-175.ngrok-free.app"
+private const val BASE_URL = "https://e677-125-166-118-175.ngrok-free.app/latihan/"
 
 val databaseModule = module {
 
