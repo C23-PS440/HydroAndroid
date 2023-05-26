@@ -6,9 +6,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.navigation.fragment.findNavController
 import com.capstone.hydroandroid.data.network.EventResult
 import com.capstone.hydroandroid.data.network.request.LoginRequest
 import com.capstone.hydroandroid.databinding.FragmentLoginBinding
+import com.capstone.hydroandroid.storage.UserLoggedIn
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class LoginFragment : Fragment() {
@@ -26,6 +28,11 @@ class LoginFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        binding.loginBtn.setOnClickListener {
+            loginAction()
+        }
+    }
+    private fun loginAction(){
         val data = LoginRequest(
             email = "", password = "")
 
@@ -37,7 +44,16 @@ class LoginFragment : Fragment() {
                 is EventResult.Loading -> {
                 }
                 is EventResult.Success -> {
+                    val userLoggedIn = UserLoggedIn(
+                        username =   it.data.loginResult.username,
+                        email =it.data.loginResult.email, accessToken =  it.data.loginResult.token
+
+                    )
+
+
+                    viewModel.setUserLoggedIn(userLoggedIn)
                     Toast.makeText(requireContext(), it.data.message, Toast.LENGTH_SHORT).show()
+                    findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToHomeFragment())
                 }
             }
         }
