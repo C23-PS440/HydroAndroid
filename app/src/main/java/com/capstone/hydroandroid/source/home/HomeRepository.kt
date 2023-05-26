@@ -1,30 +1,25 @@
-package com.capstone.hydroandroid.source.login
+package com.capstone.hydroandroid.source.home
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.liveData
 import com.capstone.hydroandroid.data.network.EventResult
 import com.capstone.hydroandroid.data.network.request.LoginRequest
+import com.capstone.hydroandroid.data.network.response.home.HomeResponse
 import com.capstone.hydroandroid.data.network.response.login.LoginResponse
-import com.capstone.hydroandroid.storage.AppLocalData
-import com.capstone.hydroandroid.storage.UserLoggedIn
+import com.capstone.hydroandroid.source.login.LoginRemoteDataSource
 import kotlinx.coroutines.Dispatchers
 import org.json.JSONObject
 
-interface LoginRepository{
-    fun login(loginRequest: LoginRequest) : LiveData<EventResult<LoginResponse>>
-    fun setUserLoggedIn(userLoggedIn: UserLoggedIn)
-
+interface HomeRepository{
+    fun getAllBlog() : LiveData<EventResult<HomeResponse>>
 }
 
-class LoginRepositoryImpl(
-    private val dataSource: LoginRemoteDataSource,
-    private val appLocalData: AppLocalData,
-): LoginRepository {
-    override fun login (loginRequest: LoginRequest): LiveData<EventResult<LoginResponse>> =
+class HomeRepositoryImpl(private val dataSource: HomeRemoteDataSource): HomeRepository {
+    override fun getAllBlog (): LiveData<EventResult<HomeResponse>> =
         liveData(Dispatchers.IO){
             emit(EventResult.Loading)
             try {
-                val response = dataSource.login(loginRequest)
+                val response = dataSource.getAllBlog()
                 if (response.isSuccessful){
                     val data = response.body()
                     data?.let {
@@ -41,6 +36,4 @@ class LoginRepositoryImpl(
                 emit(EventResult.Error(null, "Something went wrong"))
             }
         }
-    override fun setUserLoggedIn(userLoggedIn: UserLoggedIn) =
-        appLocalData.setUserLoggedIn(userLoggedIn)
 }

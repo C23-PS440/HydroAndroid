@@ -1,6 +1,7 @@
 package com.capstone.hydroandroid.di
 
 import com.capstone.hydroandroid.data.network.service.AuthService
+import com.capstone.hydroandroid.data.network.service.BlogService
 import com.capstone.hydroandroid.storage.AccessTokenInterceptor
 import com.capstone.hydroandroid.storage.AppLocalData
 import okhttp3.Interceptor
@@ -11,7 +12,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
-private const val BASE_URL = "https://e677-125-166-118-175.ngrok-free.app/latihan/"
+private const val BASE_URL = "https://cd40-125-166-118-161.ngrok-free.app/latihan/"
 
 val databaseModule = module {
 
@@ -22,6 +23,7 @@ val networkModule = module {
     factory { createAccessTokenInterceptor(get()) }
     factory { createConverterFactory() }
     factory { createService<AuthService>(get(),get()) }
+    factory { createService<BlogService>(get(),get()) }
 }
 
 private fun createOkHttpClient(accessTokenInterceptor: AccessTokenInterceptor): OkHttpClient {
