@@ -7,12 +7,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.capstone.hydroandroid.data.network.EventResult
 import com.capstone.hydroandroid.databinding.FragmentDetailBinding
-import com.capstone.hydroandroid.storage.UserLoggedIn
-import com.capstone.hydroandroid.ui.login.LoginFragmentDirections
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class DetailFragment : Fragment() {

@@ -12,7 +12,5 @@ class LoginViewModel(private val repository: LoginRepository): ViewModel() {
     fun login (loginRequest: LoginRequest) : LiveData<EventResult<LoginResponse>> {
         return repository.login(loginRequest)
     }
-
-    //save token
     fun setUserLoggedIn(userLoggedIn: UserLoggedIn) = repository.setUserLoggedIn(userLoggedIn)
 }
