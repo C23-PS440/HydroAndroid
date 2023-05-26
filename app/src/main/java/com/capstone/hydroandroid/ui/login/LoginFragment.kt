@@ -49,8 +49,6 @@ class LoginFragment : Fragment() {
                         email =it.data.loginResult.email, accessToken =  it.data.loginResult.token
 
                     )
-
-
                     viewModel.setUserLoggedIn(userLoggedIn)
                     Toast.makeText(requireContext(), it.data.message, Toast.LENGTH_SHORT).show()
                     findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToHomeFragment())
