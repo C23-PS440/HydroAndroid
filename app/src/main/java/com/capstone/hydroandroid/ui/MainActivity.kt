@@ -37,7 +37,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.navigation_home, R.id.navigation_camera, R.id.navigation_profile
             )
         )
-        setupActionBarWithNavController(navController, appBarConfiguration)
+//        setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
     }
     private fun showButtonNav() {binding.navView.visibility = View.VISIBLE}

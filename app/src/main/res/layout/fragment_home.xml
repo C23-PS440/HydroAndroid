@@ -22,8 +22,7 @@
             android:id="@+id/profileImageView"
             android:layout_width="@dimen/_20sdp"
             android:layout_height="@dimen/_20sdp"
-            android:layout_marginStart="@dimen/_20sdp"
-            />
+            android:layout_marginStart="@dimen/_20sdp" />
     </LinearLayout>
     
     <androidx.recyclerview.widget.RecyclerView

@@ -24,10 +24,10 @@ class LoginActivity : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
 
-        binding.loginBtn.setOnClickListener {
+        binding.loginButton.setOnClickListener {
             loginAction()
         }
-        binding.registerBtn.setOnClickListener {
+        binding.txtRegister.setOnClickListener {
             startActivity(Intent(this@LoginActivity , RegisterActivity::class.java))
         }
 
