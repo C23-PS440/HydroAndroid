@@ -6,7 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
+import com.capstone.hydroandroid.R
 import com.capstone.hydroandroid.adapter.BlogAdapter
 import com.capstone.hydroandroid.data.network.EventResult
 import com.capstone.hydroandroid.databinding.FragmentHomeBinding
@@ -30,6 +32,15 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.toolbar.setOnMenuItemClickListener {
+            when(it.itemId) {
+                R.id.search -> {
+                    findNavController().navigate(R.id.action_navigation_home_to_searchFragment)
+                    true
+                }
+                else -> false
+            }
+        }
         viewModel.getAllBlog().observe(viewLifecycleOwner) {
             when (it) {
                 is EventResult.Error -> {
@@ -40,10 +51,10 @@ class HomeFragment : Fragment() {
                 is EventResult.Success -> {
                     val blogAdapter = BlogAdapter(it.data.blog)
                     val layoutManager = GridLayoutManager(requireContext(),2)
-                    binding.blogRecyclerView.layoutManager = layoutManager
-                    binding.blogRecyclerView.adapter = blogAdapter
-                    val username = viewModel.getUsername()
-                    binding.usernameTextView.text = "Selamat Pagi $username"
+                    binding.rvBlog.layoutManager = layoutManager
+                    binding.rvBlog.adapter = blogAdapter
+//                    val username = viewModel.getUsername()
+//                    binding.usernameTextView.text = "Selamat Pagi $username"
                 }
             }
         }
