@@ -8,13 +8,13 @@ import android.view.inputmethod.EditorInfo
 import android.widget.EditText
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.capstone.hydroandroid.R
 import com.capstone.hydroandroid.adapter.SearchAdapter
 import com.capstone.hydroandroid.data.network.EventResult
 import com.capstone.hydroandroid.databinding.FragmentSearchBinding
-import com.capstone.hydroandroid.ui.home.HomeViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class SearchFragment : Fragment(R.layout.fragment_search) {
@@ -27,6 +27,7 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
             binding.search1Et.setText("")
             cancel()
         }
+        binding.toolbar.setNavigationOnClickListener { findNavController().navigateUp() }
         getQuery()
         doSomething(binding.search1Et)
     }
@@ -70,11 +71,8 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
         binding.searchPhoto.visibility = View.GONE
         binding.notfoundTv.visibility = View.GONE
     }
-
     private fun doSomething(search: EditText){
-
         search.setOnEditorActionListener(TextView.OnEditorActionListener{ _, actionId, _ ->
-
             if (actionId == EditorInfo.IME_ACTION_DONE) {
                 getQuery()
                 return@OnEditorActionListener true

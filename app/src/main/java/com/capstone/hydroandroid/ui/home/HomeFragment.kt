@@ -8,28 +8,18 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
+import by.kirich1409.viewbindingdelegate.viewBinding
 import com.capstone.hydroandroid.R
 import com.capstone.hydroandroid.adapter.BlogAdapter
 import com.capstone.hydroandroid.data.network.EventResult
 import com.capstone.hydroandroid.databinding.FragmentHomeBinding
-import com.capstone.hydroandroid.ui.login.LoginViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
-class HomeFragment : Fragment() {
-    private var _binding: FragmentHomeBinding? = null
-    private val binding get() = _binding!!
+class HomeFragment : Fragment(R.layout.fragment_home) {
+    private val binding: FragmentHomeBinding by viewBinding()
     private val viewModel: HomeViewModel by viewModel()
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        _binding = FragmentHomeBinding.inflate(inflater, container, false)
-        return binding.root
-    }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.toolbar.setOnMenuItemClickListener {
@@ -50,19 +40,16 @@ class HomeFragment : Fragment() {
                 }
                 is EventResult.Success -> {
                     val blogAdapter = BlogAdapter(it.data.blog)
-                    val layoutManager = GridLayoutManager(requireContext(),2)
+                    val layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
+
                     binding.rvBlog.layoutManager = layoutManager
                     binding.rvBlog.adapter = blogAdapter
-//                    val username = viewModel.getUsername()
-//                    binding.usernameTextView.text = "Selamat Pagi $username"
+
+                    val layoutManager2 = LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
+                    binding.rvVideo.layoutManager = layoutManager2
+                    binding.rvVideo.adapter = blogAdapter
                 }
             }
         }
     }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
-
 }
