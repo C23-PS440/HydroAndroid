@@ -14,12 +14,15 @@ import com.capstone.hydroandroid.R
 import com.capstone.hydroandroid.adapter.BlogAdapter
 import com.capstone.hydroandroid.data.network.EventResult
 import com.capstone.hydroandroid.databinding.FragmentHomeBinding
+import com.google.android.exoplayer2.ExoPlayer
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
 class HomeFragment : Fragment(R.layout.fragment_home) {
     private val binding: FragmentHomeBinding by viewBinding()
     private val viewModel: HomeViewModel by viewModel()
+
+    private var mPlayer : ExoPlayer? = null
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.toolbar.setOnMenuItemClickListener {
