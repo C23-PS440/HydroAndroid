@@ -28,10 +28,12 @@
                 app:menu="@menu/home_menu" />
 
         </com.google.android.material.appbar.AppBarLayout>
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Blog"/>
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_blog"
                 android:layout_width="match_parent"
@@ -44,11 +46,13 @@
                 app:layout_constraintStart_toStartOf="parent"
                 tools:listitem="@layout/item_blog"
                 />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_8sdp"
                 android:text="Video"/>
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_video"
                 android:layout_width="match_parent"
@@ -59,7 +63,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
-                tools:listitem="@layout/item_blog"
-                />
+                tools:listitem="@layout/item_blog" />
     </LinearLayout>
+
 </ScrollView>
