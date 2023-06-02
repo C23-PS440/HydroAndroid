@@ -3,6 +3,7 @@ package com.capstone.hydroandroid.data.network.service
 import com.capstone.hydroandroid.data.network.response.detail.DetailResponse
 import com.capstone.hydroandroid.data.network.response.home.HomeResponse
 import com.capstone.hydroandroid.data.network.response.search.SearchResponse
+import com.capstone.hydroandroid.data.network.response.video.VideoResponse
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -22,4 +23,11 @@ interface BlogService {
     suspend fun getSearchedBlog(
         @Query("query") query : String
     ) : Response<SearchResponse>
+
+
+    @GET("video")
+    suspend fun getAllVideo():Response<VideoResponse>
+
+
+
 }
