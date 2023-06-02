@@ -26,7 +26,6 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     private val blogViewModel: HomeViewModel by viewModel()
     private val videoViewModel : VideoViewModel by viewModel()
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.toolbar.setOnMenuItemClickListener {

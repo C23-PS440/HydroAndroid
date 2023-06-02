@@ -24,10 +24,7 @@ interface BlogService {
         @Query("query") query : String
     ) : Response<SearchResponse>
 
-
     @GET("video")
     suspend fun getAllVideo():Response<VideoResponse>
-
-
 
 }
