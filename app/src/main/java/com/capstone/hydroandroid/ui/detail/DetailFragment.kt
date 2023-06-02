@@ -1,15 +1,22 @@
 package com.capstone.hydroandroid.ui.detail
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.navigation.fragment.navArgs
+import com.bumptech.glide.Glide
 import com.capstone.hydroandroid.data.network.EventResult
 import com.capstone.hydroandroid.databinding.FragmentDetailBinding
+import com.google.android.exoplayer2.ExoPlayer
+import com.google.android.exoplayer2.MediaItem
+import com.google.android.exoplayer2.source.MediaSource
+import com.google.android.exoplayer2.source.ProgressiveMediaSource
+import com.google.android.exoplayer2.upstream.DataSource
+import com.google.android.exoplayer2.upstream.DefaultHttpDataSource
+import com.google.android.exoplayer2.util.Util
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class DetailFragment : Fragment() {
@@ -33,6 +40,7 @@ class DetailFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         viewModel.getDetailBlog(argument.blogId).observe(viewLifecycleOwner){
             when (it) {
                 is EventResult.Error -> {
@@ -41,15 +49,14 @@ class DetailFragment : Fragment() {
                 is EventResult.Loading -> {
                 }
                 is EventResult.Success -> {
-                    Log.d("test", it.data.toString())
+                    Glide.with(requireContext())
+                        .load(it.data.photoUrl)
+                        .into(binding.photoImageView)
+
+                    binding.tittleTextView.text = it.data.title
+                    binding.deskripsiTextView.text = it.data.description
                 }
             }
         }
     }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
-
 }

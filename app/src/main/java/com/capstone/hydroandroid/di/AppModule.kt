@@ -15,6 +15,9 @@ import com.capstone.hydroandroid.source.register.RegisterRepositoryImpl
 import com.capstone.hydroandroid.source.search.SearchRemoteDataSource
 import com.capstone.hydroandroid.source.search.SearchRepository
 import com.capstone.hydroandroid.source.search.SearchRepositoryImpl
+import com.capstone.hydroandroid.source.video.VideoRemoteDataSource
+import com.capstone.hydroandroid.source.video.VideoRepository
+import com.capstone.hydroandroid.source.video.VideoRepositoryImpl
 import com.capstone.hydroandroid.storage.AppLocalData
 import com.capstone.hydroandroid.storage.SharedPreferencesStorage
 import com.capstone.hydroandroid.storage.Storage
@@ -23,6 +26,7 @@ import com.capstone.hydroandroid.ui.home.HomeViewModel
 import com.capstone.hydroandroid.ui.login.LoginViewModel
 import com.capstone.hydroandroid.ui.register.RegisterViewModel
 import com.capstone.hydroandroid.ui.search.SearchViewModel
+import com.capstone.hydroandroid.ui.video.VideoViewModel
 import org.koin.android.ext.koin.androidContext
 import org.koin.dsl.module
 
@@ -32,6 +36,7 @@ val remoteDataSourceModule = module {
     single{ HomeRemoteDataSource(get()) }
     single{ DetailRemoteDataSource(get()) }
     single{ SearchRemoteDataSource(get()) }
+    single{ VideoRemoteDataSource(get()) }
 }
 
 val repositoryModule = module {
@@ -40,14 +45,16 @@ val repositoryModule = module {
     single<HomeRepository>{ HomeRepositoryImpl(get()) }
     single<DetailRepository>{ DetailRepositoryImpl(get()) }
     single<SearchRepository>{ SearchRepositoryImpl(get()) }
+    single<VideoRepository>{ VideoRepositoryImpl(get()) }
 }
 
 val viewModelModule = module {
     single{ RegisterViewModel(get()) }
     single{ LoginViewModel(get()) }
-    single{ HomeViewModel(get(), get()) }
+    single{ HomeViewModel(get()) }
     single{ DetailViewModel(get()) }
     single{ SearchViewModel(get()) }
+    single{ VideoViewModel(get()) }
 }
 
 val storageModule = module {
