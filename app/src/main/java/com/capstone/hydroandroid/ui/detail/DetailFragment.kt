@@ -51,10 +51,11 @@ class DetailFragment : Fragment() {
                 is EventResult.Success -> {
                     Glide.with(requireContext())
                         .load(it.data.photoUrl)
-                        .into(binding.photoImageView)
+                        .into(binding.imgBlog)
 
-                    binding.tittleTextView.text = it.data.title
-                    binding.deskripsiTextView.text = it.data.description
+                    binding.tvNameUser.text = it.data.name
+                    binding.tvBlogTitle.text = it.data.title
+                    binding.tvDetailBlog.text = it.data.description
                 }
             }
         }
