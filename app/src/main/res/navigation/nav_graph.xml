@@ -58,4 +58,14 @@
             android:name="videoUrl"
             app:argType="string" />
     </fragment>
+    <fragment
+        android:id="@+id/navigation_blog"
+        android:name="com.capstone.hydroandroid.ui.blog.BlogFragment"
+        android:label="fragment_blog"
+        tools:layout="@layout/fragment_blog" />
+    <fragment
+        android:id="@+id/cameraFragment"
+        android:name="com.capstone.hydroandroid.ui.camera.CameraFragment"
+        android:label="fragment_camera"
+        tools:layout="@layout/fragment_camera" />
 </navigation>
