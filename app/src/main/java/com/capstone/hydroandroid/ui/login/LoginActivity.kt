@@ -1,5 +1,6 @@
 package com.capstone.hydroandroid.ui.login
 
+import android.app.Dialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -38,13 +39,19 @@ class LoginActivity : AppCompatActivity() {
             email = "", password = "")
 
         viewModel.login(data).observe(this) {
+            val dialog = Dialog(this)
+            dialog.setContentView(R.layout.loading_dialog)
+
             when (it) {
                 is EventResult.Error -> {
+                    dialog.dismiss()
                     Toast.makeText(this, it.error, Toast.LENGTH_SHORT).show()
                 }
                 is EventResult.Loading -> {
+                    dialog.show()
                 }
                 is EventResult.Success -> {
+                    dialog.dismiss()
                     val userLoggedIn = UserLoggedIn(
                         username =   it.data.loginResult.username,
                         email =it.data.loginResult.email, accessToken =  it.data.loginResult.token
@@ -57,5 +64,4 @@ class LoginActivity : AppCompatActivity() {
             }
         }
     }
-
 }
