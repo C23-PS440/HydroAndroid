@@ -18,11 +18,10 @@
             android:scaleType="centerCrop"
             app:srcCompat="@drawable/ic_place_holder" />
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:layout_gravity="center_vertical"
-
             android:layout_marginStart="@dimen/_12sdp">
             <TextView
                 android:id="@+id/tittleTextView"
