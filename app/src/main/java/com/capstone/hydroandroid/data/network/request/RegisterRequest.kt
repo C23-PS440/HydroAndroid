@@ -1,7 +1,7 @@
 package com.capstone.hydroandroid.data.network.request
 
 data class RegisterRequest(
-    val name:String,
+    val fullName:String,
     val email: String,
     val password: String
 )
