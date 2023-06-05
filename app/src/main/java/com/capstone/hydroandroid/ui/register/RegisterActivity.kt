@@ -31,7 +31,9 @@ class RegisterActivity : AppCompatActivity() {
 
     private fun registerAction(){
         val data = RegisterRequest(
-            email = "", password = "", name = ""
+            email = binding.email.text.toString(),
+            password = binding.password.text.toString(),
+            fullName = binding.name.text.toString()
         )
 
         viewModel.register(data).observe(this) {
