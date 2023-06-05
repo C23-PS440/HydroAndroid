@@ -26,7 +26,6 @@
                 android:background="?colorSurface"
                 app:title="Home"
                 app:menu="@menu/home_menu" />
-
         </com.google.android.material.appbar.AppBarLayout>
 
             <TextView

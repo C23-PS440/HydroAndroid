@@ -14,6 +14,7 @@ import com.capstone.hydroandroid.R
 import com.capstone.hydroandroid.databinding.ActivityMainBinding
 import com.capstone.hydroandroid.ui.camera.CameraActivity
 import com.capstone.hydroandroid.ui.camera.CameraFragment
+import com.capstone.hydroandroid.ui.home.HomeFragmentDirections
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
@@ -29,9 +30,31 @@ class MainActivity : AppCompatActivity() {
 
         navController.addOnDestinationChangedListener { _, destination, _ ->
             when (destination.id) {
-                R.id.navigation_home -> showButtonNav()
-                R.id.navigation_profile -> showButtonNav()
-                R.id.navigation_blog -> showButtonNav()
+                R.id.navigation_home -> {
+                    binding.fab.setOnClickListener {
+                        Toast.makeText(this, "Home",Toast.LENGTH_SHORT).show()
+                    }
+                    showButtonNav()
+                }
+                R.id.navigation_profile -> {
+                    binding.fab.setOnClickListener {
+                        Toast.makeText(this, "Profile",Toast.LENGTH_SHORT).show()
+//                        navController.navigate(R.id.)
+
+                        val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+                        val navController2 = navHostFragment.navController
+                        navController2.navigate()
+
+
+                    }
+                    showButtonNav()
+                }
+                R.id.navigation_blog -> {
+                    binding.fab.setOnClickListener {
+                        Toast.makeText(this, "Blog",Toast.LENGTH_SHORT).show()
+                    }
+                    showButtonNav()
+                }
                 R.id.place_holder -> navView.menu.getItem(2).isEnabled = false
                 R.id.fab -> {
                     Toast.makeText(this, "Ini Camera", Toast.LENGTH_SHORT).show()
@@ -40,9 +63,9 @@ class MainActivity : AppCompatActivity() {
             }
         }
         navView.setupWithNavController(navController)
-        binding.fab.setOnClickListener {
-            startActivity(Intent(this@MainActivity,CameraActivity::class.java))
-        }
+//        binding.fab.setOnClickListener {
+//            startActivity(Intent(this@MainActivity,CameraActivity::class.java))
+//        }
     }
 
     private fun showButtonNav() {
