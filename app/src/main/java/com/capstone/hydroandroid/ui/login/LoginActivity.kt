@@ -36,7 +36,9 @@ class LoginActivity : AppCompatActivity() {
 
         private fun loginAction(){
         val data = LoginRequest(
-            email = "", password = "")
+            email = binding.email.text.toString(),
+            password = binding.password.text.toString()
+        )
 
         viewModel.login(data).observe(this) {
             val dialog = Dialog(this)
@@ -53,9 +55,9 @@ class LoginActivity : AppCompatActivity() {
                 is EventResult.Success -> {
                     dialog.dismiss()
                     val userLoggedIn = UserLoggedIn(
-                        username =   it.data.loginResult.username,
-                        email =it.data.loginResult.email, accessToken =  it.data.loginResult.token
-
+                        userId =   it.data.loginResult.userId,
+                        name = it.data.loginResult.name,
+                        token =  it.data.loginResult.token
                     )
                     viewModel.setUserLoggedIn(userLoggedIn)
                     Toast.makeText(this, it.data.message, Toast.LENGTH_SHORT).show()

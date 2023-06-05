@@ -1,7 +1,7 @@
 package com.capstone.hydroandroid.storage
 
 data class UserLoggedIn(
-    val username: String,
-    val email: String,
-    val accessToken: String
+    val name: String,
+    val userId: String,
+    val token: String
 )
