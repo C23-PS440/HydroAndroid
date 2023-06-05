@@ -33,40 +33,36 @@ class MainActivity : AppCompatActivity() {
                 R.id.navigation_home -> {
                     binding.fab.setOnClickListener {
                         Toast.makeText(this, "Home",Toast.LENGTH_SHORT).show()
+                        startActivity(Intent(this@MainActivity,CameraActivity::class.java))
                     }
                     showButtonNav()
                 }
                 R.id.navigation_profile -> {
                     binding.fab.setOnClickListener {
                         Toast.makeText(this, "Profile",Toast.LENGTH_SHORT).show()
-//                        navController.navigate(R.id.)
-
-                        val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
-                        val navController2 = navHostFragment.navController
-                        navController2.navigate()
-
-
+                        startActivity(Intent(this@MainActivity,CameraActivity::class.java))
                     }
                     showButtonNav()
                 }
                 R.id.navigation_blog -> {
                     binding.fab.setOnClickListener {
                         Toast.makeText(this, "Blog",Toast.LENGTH_SHORT).show()
+                        startActivity(Intent(this@MainActivity,CameraActivity::class.java))
                     }
                     showButtonNav()
                 }
                 R.id.place_holder -> navView.menu.getItem(2).isEnabled = false
                 R.id.fab -> {
                     Toast.makeText(this, "Ini Camera", Toast.LENGTH_SHORT).show()
+                    startActivity(Intent(this@MainActivity,CameraActivity::class.java))
                 }
                 else -> hideButtonNav()
             }
         }
         navView.setupWithNavController(navController)
-//        binding.fab.setOnClickListener {
-//            startActivity(Intent(this@MainActivity,CameraActivity::class.java))
-//        }
     }
+
+
 
     private fun showButtonNav() {
         binding.navView.visibility = View.VISIBLE
