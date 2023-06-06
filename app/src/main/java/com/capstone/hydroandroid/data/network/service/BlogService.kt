@@ -1,5 +1,6 @@
 package com.capstone.hydroandroid.data.network.service
 
+import com.capstone.hydroandroid.data.network.response.blog.UserBlogResponse
 import com.capstone.hydroandroid.data.network.response.detail.DetailResponse
 import com.capstone.hydroandroid.data.network.response.home.HomeResponse
 import com.capstone.hydroandroid.data.network.response.search.SearchResponse
@@ -26,5 +27,8 @@ interface BlogService {
 
     @GET("video")
     suspend fun getAllVideo():Response<VideoResponse>
+
+    @GET("userBlog")
+    suspend fun getAllUserBlog() : Response<UserBlogResponse>
 
 }

@@ -9,12 +9,11 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_video"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_208sdp"
+        android:layout_height="match_parent"
         android:layout_marginTop="@dimen/_4sdp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         tools:listitem="@layout/item_blog_crd" />
 

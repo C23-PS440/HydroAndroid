@@ -1,5 +1,8 @@
 package com.capstone.hydroandroid.di
 
+import com.capstone.hydroandroid.source.blog.BlogRemoteDataSource
+import com.capstone.hydroandroid.source.blog.BlogRepository
+import com.capstone.hydroandroid.source.blog.BlogRepositoryImpl
 import com.capstone.hydroandroid.source.detail.DetailRemoteDataSource
 import com.capstone.hydroandroid.source.detail.DetailRepository
 import com.capstone.hydroandroid.source.detail.DetailRepositoryImpl
@@ -24,6 +27,7 @@ import com.capstone.hydroandroid.source.video.VideoRepositoryImpl
 import com.capstone.hydroandroid.storage.AppLocalData
 import com.capstone.hydroandroid.storage.SharedPreferencesStorage
 import com.capstone.hydroandroid.storage.Storage
+import com.capstone.hydroandroid.ui.blog.BlogViewModel
 import com.capstone.hydroandroid.ui.detail.DetailViewModel
 import com.capstone.hydroandroid.ui.home.HomeViewModel
 import com.capstone.hydroandroid.ui.login.LoginViewModel
@@ -42,6 +46,7 @@ val remoteDataSourceModule = module {
     single{ SearchRemoteDataSource(get()) }
     single{ VideoRemoteDataSource(get()) }
     single{ ProfileRemoteDataSource(get()) }
+    single { BlogRemoteDataSource(get())}
 }
 
 val repositoryModule = module {
@@ -52,6 +57,7 @@ val repositoryModule = module {
     single<SearchRepository>{ SearchRepositoryImpl(get()) }
     single<VideoRepository>{ VideoRepositoryImpl(get()) }
     single<ProfileRepository>{ ProfileRepositoryImpl(get()) }
+    single<BlogRepository>{ BlogRepositoryImpl(get()) }
 }
 
 val viewModelModule = module {
@@ -62,6 +68,7 @@ val viewModelModule = module {
     single{ SearchViewModel(get()) }
     single{ VideoViewModel(get()) }
     single{ ProfileViewModel(get()) }
+    single{ BlogViewModel(get()) }
 }
 
 val storageModule = module {
