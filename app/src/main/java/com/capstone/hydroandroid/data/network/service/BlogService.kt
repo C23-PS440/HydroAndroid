@@ -12,7 +12,7 @@ import retrofit2.http.Query
 
 interface BlogService {
     //GET ALL BLOG
-    @GET("blog")
+    @GET("blogs")
     suspend fun getAllBlog(): Response<HomeResponse>
 
     @GET("blog/{blogId}")

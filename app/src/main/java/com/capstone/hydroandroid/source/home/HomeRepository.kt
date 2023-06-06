@@ -3,10 +3,7 @@ package com.capstone.hydroandroid.source.home
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.liveData
 import com.capstone.hydroandroid.data.network.EventResult
-import com.capstone.hydroandroid.data.network.request.LoginRequest
 import com.capstone.hydroandroid.data.network.response.home.HomeResponse
-import com.capstone.hydroandroid.data.network.response.login.LoginResponse
-import com.capstone.hydroandroid.source.login.LoginRemoteDataSource
 import kotlinx.coroutines.Dispatchers
 import org.json.JSONObject
 

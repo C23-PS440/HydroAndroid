@@ -1,6 +1,5 @@
 package com.capstone.hydroandroid.data.network.response.blog
 
-import com.capstone.hydroandroid.data.network.response.home.Blog
 import com.google.gson.annotations.SerializedName
 
 data class UserBlogResponse(
@@ -11,24 +10,30 @@ data class UserBlogResponse(
 	@field:SerializedName("message")
 	val message: String? = null,
 
-	@field:SerializedName("blog")
-	val blog: List<Blog?>? = null
+	@field:SerializedName("blogs")
+	val blog: List<BlogsItem?>? = null
 )
 
-data class BlogItem(
+data class BlogsItem(
 
-	@field:SerializedName("date")
-	val date: String? = null,
+	@field:SerializedName("blogDescription")
+	val blogDescription: String,
 
-	@field:SerializedName("photoUrl")
-	val photoUrl: String? = null,
+	@field:SerializedName("dateCreated")
+	val dateCreated: String,
 
-	@field:SerializedName("description")
-	val description: String? = null,
+	@field:SerializedName("createdBy")
+	val createdBy: String,
 
-	@field:SerializedName("title")
-	val title: String? = null,
+	@field:SerializedName("imageUrl")
+	val imageUrl: String,
 
 	@field:SerializedName("blogId")
-	val blogId: String? = null
+	val blogId: Int,
+
+	@field:SerializedName("userId")
+	val userId: String,
+
+	@field:SerializedName("blogTitle")
+	val blogTitle: String
 )
