@@ -37,11 +37,9 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
                 else -> false
             }
         }
-        fetchVideo()
+//        fetchVideo()
         fetchBlog()
     }
-
-
     private fun fetchBlog(){
         blogViewModel.getAllBlog().observe(viewLifecycleOwner) {
             when (it) {
@@ -52,7 +50,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
                 }
                 is EventResult.Success -> {
                     //BLOG
-                    val blogAdapter = BlogAdapter(it.data.blog)
+                    val blogAdapter = BlogAdapter(it.data.blogs)
                     val layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
                     binding.rvBlog.layoutManager = layoutManager
                     binding.rvBlog.adapter = blogAdapter
@@ -78,6 +76,4 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
             }
         }
     }
-
-
 }

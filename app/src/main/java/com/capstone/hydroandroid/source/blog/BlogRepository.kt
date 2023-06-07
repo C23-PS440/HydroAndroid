@@ -1,22 +1,22 @@
-package com.capstone.hydroandroid.source.home
+package com.capstone.hydroandroid.source.blog
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.liveData
 import com.capstone.hydroandroid.data.network.EventResult
-import com.capstone.hydroandroid.data.network.response.home.HomeResponse
+import com.capstone.hydroandroid.data.network.response.blog.UserBlogResponse
 import kotlinx.coroutines.Dispatchers
 import org.json.JSONObject
 
-interface HomeRepository{
-    fun getAllBlog() : LiveData<EventResult<HomeResponse>>
+interface BlogRepository{
+    fun getAllUserBlog() : LiveData<EventResult<UserBlogResponse>>
 }
 
-class HomeRepositoryImpl(private val dataSource: HomeRemoteDataSource): HomeRepository {
-    override fun getAllBlog (): LiveData<EventResult<HomeResponse>> =
+class BlogRepositoryImpl(private val dataSource: BlogRemoteDataSource): BlogRepository {
+    override fun getAllUserBlog (): LiveData<EventResult<UserBlogResponse>> =
         liveData(Dispatchers.IO){
             emit(EventResult.Loading)
             try {
-                val response = dataSource.getAllBlog()
+                val response = dataSource.getAllUserBlog()
                 if (response.isSuccessful){
                     val data = response.body()
                     data?.let {

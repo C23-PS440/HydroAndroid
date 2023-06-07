@@ -1,17 +1,17 @@
-package com.capstone.hydroandroid.data.network.response.home
+package com.capstone.hydroandroid.data.network.response.blog
 
 import com.google.gson.annotations.SerializedName
 
-data class HomeResponse(
-
-	@field:SerializedName("blogs")
-	val blogs: List<BlogsItem>,
+data class UserBlogResponse(
 
 	@field:SerializedName("error")
-	val error: Boolean,
+	val error: Boolean? = null,
 
 	@field:SerializedName("message")
-	val message: String
+	val message: String? = null,
+
+	@field:SerializedName("blogs")
+	val blog: List<BlogsItem?>? = null
 )
 
 data class BlogsItem(

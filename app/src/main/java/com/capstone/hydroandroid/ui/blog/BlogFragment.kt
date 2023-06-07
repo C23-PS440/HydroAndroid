@@ -1,53 +1,46 @@
 package com.capstone.hydroandroid.ui.blog
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
+import android.widget.Toast
+import androidx.recyclerview.widget.LinearLayoutManager
+import by.kirich1409.viewbindingdelegate.viewBinding
 import com.capstone.hydroandroid.R
+import com.capstone.hydroandroid.adapter.BlogUserAdapter
+import com.capstone.hydroandroid.data.network.EventResult
+import com.capstone.hydroandroid.databinding.FragmentBlogBinding
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-class BlogFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+class BlogFragment : Fragment(R.layout.fragment_blog) {
+    private val binding: FragmentBlogBinding by viewBinding()
+    private val viewModel: BlogViewModel by viewModel()
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        fetchData()
+    }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
+    private fun fetchData() {
+        viewModel.getAllUserBlog().observe(viewLifecycleOwner) {
+            when (it) {
+                is EventResult.Error -> {
+                    Toast.makeText(requireContext(), it.error, Toast.LENGTH_SHORT).show()
+                }
+                is EventResult.Loading -> {
+                }
+                is EventResult.Success -> {
+                    val blogUserAdapter = BlogUserAdapter(it.data.blog)
+                    val layoutManager = LinearLayoutManager(
+                        requireContext(),
+                        LinearLayoutManager.VERTICAL, false
+                    )
+                    binding.rvVideo.layoutManager = layoutManager
+                    binding.rvVideo.adapter = blogUserAdapter
+                }
+            }
         }
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_blog, container, false)
-    }
-
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment BlogFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            BlogFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
-    }
 }
