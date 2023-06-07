@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
+import androidx.fragment.app.FragmentManager
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
@@ -12,6 +13,7 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.capstone.hydroandroid.R
 import com.capstone.hydroandroid.databinding.ActivityMainBinding
+import com.capstone.hydroandroid.ui.blog.addblog.AddBlogFragment
 import com.capstone.hydroandroid.ui.camera.CameraActivity
 import com.capstone.hydroandroid.ui.camera.CameraFragment
 import com.capstone.hydroandroid.ui.home.HomeFragmentDirections
@@ -31,6 +33,7 @@ class MainActivity : AppCompatActivity() {
         navController.addOnDestinationChangedListener { _, destination, _ ->
             when (destination.id) {
                 R.id.navigation_home -> {
+                    setUpIconCamera()
                     binding.fab.setOnClickListener {
                         Toast.makeText(this, "Home",Toast.LENGTH_SHORT).show()
                         startActivity(Intent(this@MainActivity,CameraActivity::class.java))
@@ -38,6 +41,7 @@ class MainActivity : AppCompatActivity() {
                     showButtonNav()
                 }
                 R.id.navigation_profile -> {
+                    setUpIconCamera()
                     binding.fab.setOnClickListener {
                         Toast.makeText(this, "Profile",Toast.LENGTH_SHORT).show()
                         startActivity(Intent(this@MainActivity,CameraActivity::class.java))
@@ -45,9 +49,9 @@ class MainActivity : AppCompatActivity() {
                     showButtonNav()
                 }
                 R.id.navigation_blog -> {
+                    setUpIconAdd()
                     binding.fab.setOnClickListener {
-                        Toast.makeText(this, "Blog",Toast.LENGTH_SHORT).show()
-                        startActivity(Intent(this@MainActivity,CameraActivity::class.java))
+                        AddBlogFragment().show(supportFragmentManager,"dialog")
                     }
                     showButtonNav()
                 }
@@ -61,18 +65,20 @@ class MainActivity : AppCompatActivity() {
         }
         navView.setupWithNavController(navController)
     }
-
-
-
     private fun showButtonNav() {
         binding.navView.visibility = View.VISIBLE
         binding.navBar.visibility = View.VISIBLE
         binding.fab.visibility = View.VISIBLE
     }
-
     private fun hideButtonNav() {
         binding.navBar.visibility = View.GONE
         binding.fab.visibility = View.GONE
         binding.navView.visibility = View.GONE
+    }
+    private fun setUpIconAdd(){
+        binding.fab.setImageResource(R.drawable.plus)
+    }
+    private fun setUpIconCamera(){
+        binding.fab.setImageResource(R.drawable.camera)
     }
 }
