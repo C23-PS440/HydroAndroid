@@ -43,4 +43,9 @@ class BlogFragment : Fragment(R.layout.fragment_blog) {
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+        Toast.makeText(requireContext(), "Terbuka Ulang", Toast.LENGTH_SHORT).show()
+    }
+
 }
