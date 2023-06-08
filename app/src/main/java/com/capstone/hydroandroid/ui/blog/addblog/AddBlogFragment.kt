@@ -1,21 +1,115 @@
 package com.capstone.hydroandroid.ui.blog.addblog
 
+import android.content.Intent
+import android.graphics.BitmapFactory
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.DialogFragment
+import by.kirich1409.viewbindingdelegate.viewBinding
 import com.capstone.hydroandroid.R
+import com.capstone.hydroandroid.databinding.FragmentAddBlogBinding
+import com.capstone.hydroandroid.databinding.FragmentHomeBinding
+import com.capstone.hydroandroid.reduceFileImage
+import com.capstone.hydroandroid.rotateBitmap
+import com.capstone.hydroandroid.ui.MainActivity.Companion.CAMERA_X_RESULT
+import com.capstone.hydroandroid.ui.camera.CameraActivity
+import com.capstone.hydroandroid.uriToFile
+import okhttp3.MediaType.Companion.toMediaType
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.MultipartBody
+import okhttp3.RequestBody.Companion.asRequestBody
+import okhttp3.RequestBody.Companion.toRequestBody
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import java.io.File
 
 
-class AddBlogFragment : DialogFragment() {
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_add_blog, container, false)
+class AddBlogFragment : DialogFragment(R.layout.fragment_add_blog) {
+    private val binding: FragmentAddBlogBinding by viewBinding()
+    private var getFile: File? = null
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding.addPhotoButton.setOnClickListener {
+            chooseImageDialog()
+        }
+        binding.btnPost.setOnClickListener {
+            uploadBlog()
+            dismiss()
+        }
+
     }
+
+    private fun chooseImageDialog() {
+        androidx.appcompat.app.AlertDialog.Builder(requireContext())
+            .setMessage("Pilih Gambar")
+            .setPositiveButton("Gallery") { _, _ -> startGallery() }
+            .setNegativeButton("Camera") { _, _ -> startCameraX() }
+            .show()
+    }
+
+    private fun startCameraX() {
+        val intent = Intent(requireActivity(), CameraActivity::class.java)
+        launcherIntentCameraX.launch(intent)
+    }
+
+    private fun startGallery() {
+        val intent = Intent()
+        intent.action = Intent.ACTION_GET_CONTENT
+        intent.type = "image/*"
+        val chooser = Intent.createChooser(intent, "Choose a Picture")
+        launcherIntentGallery.launch(chooser)
+    }
+
+    private val launcherIntentGallery = registerForActivityResult(
+        ActivityResultContracts.StartActivityForResult()
+    ) { result ->
+        if (result.resultCode == AppCompatActivity.RESULT_OK) {
+            val selectedImg: Uri = result.data?.data as Uri
+            val myFile = uriToFile(selectedImg, requireContext())
+            getFile = myFile
+            binding.imgInputImgBlog.setImageURI(selectedImg)
+        }
+    }
+
     override fun onStart() {
         super.onStart()
         val width = (resources.displayMetrics.widthPixels * 0.85).toInt()
-        val height = (resources.displayMetrics.heightPixels * 0.40).toInt()
         dialog!!.window?.setLayout(width, ViewGroup.LayoutParams.WRAP_CONTENT)
+    }
+
+    private val launcherIntentCameraX = registerForActivityResult(
+        ActivityResultContracts.StartActivityForResult()
+    ) {
+        if (it.resultCode == CAMERA_X_RESULT) {
+            val myFile = it.data?.getSerializableExtra("picture") as File
+            val isBackCamera = it.data?.getBooleanExtra("isBackCamera", true) as Boolean
+            getFile = myFile
+            val result = rotateBitmap(
+                BitmapFactory.decodeFile(myFile.path),
+                isBackCamera
+            )
+            binding.imgInputImgBlog.setImageBitmap(result)
+        }
+    }
+
+    private fun uploadBlog() {
+        if (getFile != null) {
+            val file = reduceFileImage(getFile as File)
+            val tittle = binding.edtTitle.text.toString().toRequestBody("text/plain".toMediaType())
+            val description =  binding.edtDesc.text.toString().toRequestBody("text/plain".toMediaType())
+            val requestImageFile = file.asRequestBody("image/jpeg".toMediaTypeOrNull())
+            val imageMultipart: MultipartBody.Part = MultipartBody.Part.createFormData(
+                "photo",
+                file.name,
+                requestImageFile
+            )
+        }
     }
 }
