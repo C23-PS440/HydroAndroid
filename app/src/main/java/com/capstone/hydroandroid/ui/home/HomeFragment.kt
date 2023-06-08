@@ -16,6 +16,7 @@ import com.capstone.hydroandroid.adapter.BlogAdapter
 import com.capstone.hydroandroid.adapter.VideoAdapter
 import com.capstone.hydroandroid.data.network.EventResult
 import com.capstone.hydroandroid.databinding.FragmentHomeBinding
+import com.capstone.hydroandroid.ui.profile.ProfileViewModel
 import com.capstone.hydroandroid.ui.video.VideoViewModel
 import com.google.android.exoplayer2.ExoPlayer
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -25,6 +26,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     private val binding: FragmentHomeBinding by viewBinding()
     private val blogViewModel: HomeViewModel by viewModel()
     private val videoViewModel : VideoViewModel by viewModel()
+//    private val profileViewModel: ProfileViewModel by viewModel()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -39,6 +41,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         }
 //        fetchVideo()
         fetchBlog()
+        fetchUsername()
     }
     private fun fetchBlog(){
         blogViewModel.getAllBlog().observe(viewLifecycleOwner) {
@@ -75,5 +78,9 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
                 }
             }
         }
+    }
+
+    private fun fetchUsername() {
+        binding.tvUsername.text = blogViewModel.getUsername()
     }
 }
