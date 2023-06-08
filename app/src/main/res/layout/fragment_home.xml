@@ -5,40 +5,32 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.home.HomeFragment">
-
+    tools:context=".ui.home.HomeFragment"
+    android:padding="@dimen/_8sdp">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/tv_username"
+            android:id="@+id/username_textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Selamat Pagi, Cindy" />
-
-        <com.google.android.material.appbar.AppBarLayout
-            android:id="@+id/app_bar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <com.google.android.material.appbar.MaterialToolbar
-                android:id="@+id/toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="?colorSurface"
-                app:title="Home"
-                app:menu="@menu/home_menu" />
-        </com.google.android.material.appbar.AppBarLayout>
+            android:layout_marginTop="@dimen/_8sdp"
+            android:textSize="@dimen/_14sdp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:text="Selamat Pagi Dunia"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Blog"/>
+                android:text="Blog"
+                android:layout_marginTop="@dimen/_12sdp"
+                android:textSize="@dimen/_12sdp"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_blog"
@@ -56,8 +48,12 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_8sdp"
-                android:text="Video"/>
+                android:text="Video"
+                android:layout_marginTop="@dimen/_12sdp"
+                android:textSize="@dimen/_12sdp"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_video"

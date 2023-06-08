@@ -117,6 +117,14 @@ class MainActivity : AppCompatActivity() {
                     }
                     showButtonNav()
                 }
+                R.id.navigation_search -> {
+                    setUpIconCamera()
+                    binding.fab.setOnClickListener {
+                        Toast.makeText(this, "Profile",Toast.LENGTH_SHORT).show()
+                        startActivity(Intent(this@MainActivity,CameraActivity::class.java))
+                    }
+                    showButtonNav()
+                }
                 R.id.place_holder -> navView.menu.getItem(2).isEnabled = false
                 R.id.fab -> {
                     Toast.makeText(this, "Ini Camera", Toast.LENGTH_SHORT).show()

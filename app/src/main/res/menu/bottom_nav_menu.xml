@@ -7,16 +7,18 @@
         android:title="Home" />
 
     <item
-        android:id="@+id/navigation_blog"
-        android:icon="@drawable/blog"
-        android:title="Blog" />
+        android:id="@+id/navigation_search"
+        android:icon="@drawable/search_logo"
+        android:title="Search" />
+
     <item
         android:id="@+id/place_holder"
         android:title="" />
+
     <item
-        android:id="@+id/navigation_discussion"
-        android:icon="@drawable/forum"
-        android:title="Disscussion" />
+        android:id="@+id/navigation_blog"
+        android:icon="@drawable/blog"
+        android:title="Blog" />
 
 
     <item
