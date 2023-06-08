@@ -14,9 +14,6 @@
             android:id="@+id/action_homeFragment_to_detailFragment"
             app:destination="@id/detailFragment" />
         <action
-            android:id="@+id/action_navigation_home_to_searchFragment"
-            app:destination="@id/searchFragment" />
-        <action
             android:id="@+id/action_navigation_home_to_videoFragment"
             app:destination="@id/videoFragment" />
     </fragment>
@@ -38,7 +35,7 @@
         android:label="Profile"
         tools:layout="@layout/fragment_profile" />
     <fragment
-        android:id="@+id/searchFragment"
+        android:id="@+id/navigation_search"
         android:name="com.capstone.hydroandroid.ui.search.SearchFragment"
         android:label="fragment_search"
         tools:layout="@layout/fragment_search" >
@@ -58,6 +55,7 @@
             android:name="videoUrl"
             app:argType="string" />
     </fragment>
+
     <fragment
         android:id="@+id/navigation_blog"
         android:name="com.capstone.hydroandroid.ui.blog.BlogFragment"

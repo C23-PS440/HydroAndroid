@@ -6,6 +6,7 @@ import android.text.TextWatcher
 import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.widget.EditText
+import android.widget.SearchView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
@@ -23,62 +24,99 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.cancelSearch.setOnClickListener{
-            binding.search1Et.setText("")
-            cancel()
-        }
-        binding.toolbar.setNavigationOnClickListener { findNavController().navigateUp() }
-        getQuery()
-        doSomething(binding.search1Et)
-    }
 
-    private fun getQuery(){
-        binding.search1Et.addTextChangedListener(object : TextWatcher {
-            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-
+        binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                binding.searchView.clearFocus()
+                if (query != null) {
+                    fetchDataSearch(query)
+                }
+                return true
             }
 
-            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                val query:String = p0.toString()
-                if (query.isNotEmpty()){
-                    viewModel.getSearchedBlog(query).observe(viewLifecycleOwner){
-                        when(it){
-                            is EventResult.Error ->{
-                            }
-                            is EventResult.Loading->{
-                            }
-                            is EventResult.Success->{
-                                val adapter = SearchAdapter(it.data.result)
-                                val layoutManager = GridLayoutManager(requireContext(),2,
-                                    GridLayoutManager.VERTICAL,false)
-                                binding.searchPhoto.setHasFixedSize(true)
-                                binding.searchPhoto.layoutManager = layoutManager
-                                binding.searchPhoto.adapter = adapter
-                            }
-                        }
-                    }
+            override fun onQueryTextChange(newText: String?): Boolean {
+                return false
+            }
+
+        })
+
+
+//        binding.cancelSearch.setOnClickListener{
+//            binding.search1Et.setText("")
+//            cancel()
+//        }
+//        binding.toolbar.setNavigationOnClickListener { findNavController().navigateUp() }
+//        getQuery()
+//        doSomething(binding.search1Et)
+    }
+
+    private fun fetchDataSearch(query:String){
+        viewModel.getSearchedBlog(query).observe(viewLifecycleOwner){
+            when(it){
+                is EventResult.Error ->{
+                }
+                is EventResult.Loading->{
+                }
+                is EventResult.Success->{
+                    val adapter = SearchAdapter(it.data.result)
+                    val layoutManager = GridLayoutManager(requireContext(),2,
+                        GridLayoutManager.VERTICAL,false)
+                    binding.rvBlog.setHasFixedSize(true)
+                    binding.rvBlog.layoutManager = layoutManager
+                    binding.rvBlog.adapter = adapter
                 }
             }
-
-            override fun afterTextChanged(p0: Editable?) {
-            }
-
-        })
+        }
     }
 
-    private fun cancel(){
-        binding.searchPhoto.visibility = View.VISIBLE
-        binding.searchPhoto.visibility = View.GONE
-        binding.notfoundTv.visibility = View.GONE
-    }
-    private fun doSomething(search: EditText){
-        search.setOnEditorActionListener(TextView.OnEditorActionListener{ _, actionId, _ ->
-            if (actionId == EditorInfo.IME_ACTION_DONE) {
-                getQuery()
-                return@OnEditorActionListener true
-            }
-            false
-        })
-    }
+//    private fun getQuery(){
+//        binding.search1Et.addTextChangedListener(object : TextWatcher {
+//            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+//
+//            }
+//
+//            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+//                val query:String = p0.toString()
+//                if (query.isNotEmpty()){
+//                    viewModel.getSearchedBlog(query).observe(viewLifecycleOwner){
+//                        when(it){
+//                            is EventResult.Error ->{
+//                            }
+//                            is EventResult.Loading->{
+//                            }
+//                            is EventResult.Success->{
+//                                val adapter = SearchAdapter(it.data.result)
+//                                val layoutManager = GridLayoutManager(requireContext(),2,
+//                                    GridLayoutManager.VERTICAL,false)
+//                                binding.searchPhoto.setHasFixedSize(true)
+//                                binding.searchPhoto.layoutManager = layoutManager
+//                                binding.searchPhoto.adapter = adapter
+//                            }
+//                        }
+//                    }
+//                }
+//            }
+//
+//            override fun afterTextChanged(p0: Editable?) {
+//            }
+//
+//        })
+//    }
+
+
+//    private fun cancel(){
+//        binding.searchPhoto.visibility = View.VISIBLE
+//        binding.searchPhoto.visibility = View.GONE
+//        binding.notfoundTv.visibility = View.GONE
+//    }
+//    private fun doSomething(search: EditText){
+//        search.setOnEditorActionListener(TextView.OnEditorActionListener{ _, actionId, _ ->
+//            if (actionId == EditorInfo.IME_ACTION_DONE) {
+//                getQuery()
+//                return@OnEditorActionListener true
+//            }
+//            false
+//        })
+//    }
 
 }

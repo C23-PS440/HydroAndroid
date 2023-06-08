@@ -26,20 +26,11 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     private val binding: FragmentHomeBinding by viewBinding()
     private val blogViewModel: HomeViewModel by viewModel()
     private val videoViewModel : VideoViewModel by viewModel()
-//    private val profileViewModel: ProfileViewModel by viewModel()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.toolbar.setOnMenuItemClickListener {
-            when(it.itemId) {
-                R.id.search -> {
-                    findNavController().navigate(R.id.action_navigation_home_to_searchFragment)
-                    true
-                }
-                else -> false
-            }
-        }
-//        fetchVideo()
+
+        fetchVideo()
         fetchBlog()
         fetchUsername()
     }
@@ -81,6 +72,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     }
 
     private fun fetchUsername() {
-        binding.tvUsername.text = blogViewModel.getUsername()
+        val username = blogViewModel.getUsername()
+        binding.usernameTextView.text = "Selamat Pagi $username"
     }
 }
