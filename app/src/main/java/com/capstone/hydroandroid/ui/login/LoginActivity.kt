@@ -4,6 +4,7 @@ import android.app.Dialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import com.capstone.hydroandroid.R
 import com.capstone.hydroandroid.data.network.EventResult
@@ -24,6 +25,7 @@ class LoginActivity : AppCompatActivity() {
         binding = ActivityLoginBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
+        showUi()
 
         binding.loginButton.setOnClickListener {
             loginAction()
@@ -41,19 +43,25 @@ class LoginActivity : AppCompatActivity() {
         )
 
         viewModel.login(data).observe(this) {
-            val dialog = Dialog(this)
-            dialog.setContentView(R.layout.loading_dialog)
+
+            val dialogLoading = Dialog(this)
+            dialogLoading.setContentView(R.layout.loading_dialog)
+
 
             when (it) {
                 is EventResult.Error -> {
-                    dialog.dismiss()
+                    dialogLoading.dismiss()
+//                    hideUi()
                     Toast.makeText(this, it.error, Toast.LENGTH_SHORT).show()
                 }
                 is EventResult.Loading -> {
-                    dialog.show()
+                    showUi()
+
+                    dialogLoading.show()
                 }
                 is EventResult.Success -> {
-                    dialog.dismiss()
+                    dialogLoading.dismiss()
+                    showUi()
                     val userLoggedIn = UserLoggedIn(
                         userId =   it.data.loginResult.userId,
                         name = it.data.loginResult.name,
@@ -65,5 +73,20 @@ class LoginActivity : AppCompatActivity() {
                 }
             }
         }
+    }
+
+
+    private fun showUi(){
+        binding.loginView.visibility = View.VISIBLE
+        binding.errorView.visibility = View.GONE
+    }
+    private fun hideUi(){
+        binding.loginView.visibility = View.GONE
+        binding.errorView.visibility = View.VISIBLE
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        showUi()
     }
 }

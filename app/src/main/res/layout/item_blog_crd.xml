@@ -15,7 +15,7 @@
             android:id="@+id/photoImageView"
             android:layout_width="@dimen/_60sdp"
             android:layout_height="@dimen/_60sdp"
-            android:contentDescription=""
+            android:contentDescription="XXX"
             android:scaleType="centerCrop"
             app:srcCompat="@drawable/ic_place_holder" />
         <LinearLayout

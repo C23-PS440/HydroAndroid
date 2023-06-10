@@ -4,30 +4,36 @@ import com.google.gson.annotations.SerializedName
 
 data class SearchResponse(
 
-	@field:SerializedName("result")
-	val result: List<ResultItem>,
+	@field:SerializedName("response")
+	val response: List<ResponseItem?>? = null,
 
-	@field:SerializedName("total")
-	val total: Int,
+	@field:SerializedName("error")
+	val error: Boolean,
 
 	@field:SerializedName("message")
 	val message: String
 )
 
-data class ResultItem(
+data class ResponseItem(
 
-	@field:SerializedName("date")
-	val date: String,
+	@field:SerializedName("blogDescription")
+	val blogDescription: String? = null,
 
-	@field:SerializedName("photoUrl")
-	val photoUrl: String,
+	@field:SerializedName("dateCreated")
+	val dateCreated: String? = null,
 
-	@field:SerializedName("description")
-	val description: String,
+	@field:SerializedName("createdBy")
+	val createdBy: String? = null,
 
-	@field:SerializedName("title")
-	val title: String,
+	@field:SerializedName("imageUrl")
+	val imageUrl: String? = null,
 
 	@field:SerializedName("blogId")
-	val blogId: String
+	val blogId: Int? = null,
+
+	@field:SerializedName("userId")
+	val userId: String? = null,
+
+	@field:SerializedName("blogTitle")
+	val blogTitle: String? = null
 )

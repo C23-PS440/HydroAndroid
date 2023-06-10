@@ -29,7 +29,7 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 binding.searchView.clearFocus()
                 if (query != null) {
-                    fetchDataSearch(query)
+//                    fetchDataSearch(query)
                 }
                 return true
             }
@@ -50,24 +50,24 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
 //        doSomething(binding.search1Et)
     }
 
-    private fun fetchDataSearch(query:String){
-        viewModel.getSearchedBlog(query).observe(viewLifecycleOwner){
-            when(it){
-                is EventResult.Error ->{
-                }
-                is EventResult.Loading->{
-                }
-                is EventResult.Success->{
-                    val adapter = SearchAdapter(it.data.result)
-                    val layoutManager = GridLayoutManager(requireContext(),2,
-                        GridLayoutManager.VERTICAL,false)
-                    binding.rvBlog.setHasFixedSize(true)
-                    binding.rvBlog.layoutManager = layoutManager
-                    binding.rvBlog.adapter = adapter
-                }
-            }
-        }
-    }
+//    private fun fetchDataSearch(query:String){
+//        viewModel.getSearchedBlog(query).observe(viewLifecycleOwner){
+//            when(it){
+//                is EventResult.Error ->{
+//                }
+//                is EventResult.Loading->{
+//                }
+//                is EventResult.Success->{
+//                    val adapter = SearchAdapter(it.data.result)
+//                    val layoutManager = GridLayoutManager(requireContext(),2,
+//                        GridLayoutManager.VERTICAL,false)
+//                    binding.rvBlog.setHasFixedSize(true)
+//                    binding.rvBlog.layoutManager = layoutManager
+//                    binding.rvBlog.adapter = adapter
+//                }
+//            }
+//        }
+//    }
 
 //    private fun getQuery(){
 //        binding.search1Et.addTextChangedListener(object : TextWatcher {
