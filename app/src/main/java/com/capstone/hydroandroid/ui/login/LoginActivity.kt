@@ -65,7 +65,8 @@ class LoginActivity : AppCompatActivity() {
                     val userLoggedIn = UserLoggedIn(
                         userId =   it.data.loginResult.userId,
                         name = it.data.loginResult.name,
-                        token =  it.data.loginResult.token
+                        token =  it.data.loginResult.token,
+                        email = it.data.loginResult.email
                     )
                     viewModel.setUserLoggedIn(userLoggedIn)
                     Toast.makeText(this, it.data.message, Toast.LENGTH_SHORT).show()
