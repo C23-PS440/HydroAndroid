@@ -5,6 +5,7 @@ import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.View
 import android.widget.Toast
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.capstone.hydroandroid.R
@@ -32,20 +33,14 @@ class BlogFragment : Fragment(R.layout.fragment_blog) {
                 }
                 is EventResult.Success -> {
                     val blogUserAdapter = BlogUserAdapter(it.data.blog)
-                    val layoutManager = LinearLayoutManager(
-                        requireContext(),
-                        LinearLayoutManager.VERTICAL, false
-                    )
-                    binding.rvVideo.layoutManager = layoutManager
-                    binding.rvVideo.adapter = blogUserAdapter
+                    val layoutManager = GridLayoutManager(requireContext(),2,
+                        GridLayoutManager.VERTICAL,false)
+                    binding.rvBlog.layoutManager = layoutManager
+                    binding.rvBlog.adapter = blogUserAdapter
                 }
             }
         }
     }
 
-    override fun onResume() {
-        super.onResume()
-        Toast.makeText(requireContext(), "Terbuka Ulang", Toast.LENGTH_SHORT).show()
-    }
 
 }

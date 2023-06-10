@@ -61,4 +61,9 @@
         android:name="com.capstone.hydroandroid.ui.blog.BlogFragment"
         android:label="fragment_blog"
         tools:layout="@layout/fragment_blog" />
+    <fragment
+        android:id="@+id/navigation_forum_diskusi"
+        android:name="com.capstone.hydroandroid.ui.forum.ForumDiskusiFragment"
+        android:label="fragment_forum_diskusi"
+        tools:layout="@layout/fragment_forum_diskusi" />
 </navigation>

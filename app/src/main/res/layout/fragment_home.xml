@@ -1,71 +1,118 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.home.HomeFragment"
-    android:padding="@dimen/_8sdp">
-    <LinearLayout
+    android:orientation="vertical"
+    android:padding="@dimen/_8sdp"
+    tools:context=".ui.home.HomeFragment">
+
+    <TextView
+        android:id="@+id/username_textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_8sdp"
+        android:text="Selamat Pagi Dunia"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_14sdp"
+        android:textStyle="bold" />
+
+
+    <FrameLayout
+        android:id="@+id/frameLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/searchview_frame_bg"
+        android:layout_marginTop="@dimen/_8sdp"
+        android:padding="@dimen/_8sdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <SearchView
+            android:id="@+id/searchView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_8sdp"
+            android:background="@drawable/searchview_background"
+            android:iconifiedByDefault="false"
+            android:queryBackground="@android:color/transparent"
+            android:queryHint="Enter Query" />
+    </FrameLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_blog"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_marginTop="@dimen/_8sdp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/frameLayout"
+        tools:listitem="@layout/item_blog" />
 
-        <TextView
-            android:id="@+id/username_textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_8sdp"
-            android:textSize="@dimen/_14sdp"
-            android:textStyle="bold"
-            android:textColor="@color/black"
-            android:text="Selamat Pagi Dunia"/>
+    <!--    <LinearLayout-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="match_parent"-->
+    <!--        android:orientation="vertical">-->
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Blog"
-                android:layout_marginTop="@dimen/_12sdp"
-                android:textSize="@dimen/_12sdp"
-                android:textStyle="bold"
-                android:textColor="@color/black"
-                />
+    <!--        <TextView-->
+    <!--            android:id="@+id/username_textView"-->
+    <!--            android:layout_width="wrap_content"-->
+    <!--            android:layout_height="wrap_content"-->
+    <!--            android:layout_marginTop="@dimen/_8sdp"-->
+    <!--            android:textSize="@dimen/_14sdp"-->
+    <!--            android:textStyle="bold"-->
+    <!--            android:textColor="@color/black"-->
+    <!--            android:text="Selamat Pagi Dunia"/>-->
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_blog"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_208sdp"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                android:layout_marginTop="@dimen/_4sdp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toStartOf="parent"
-                tools:listitem="@layout/item_blog"
-                />
+    <!--            <TextView-->
+    <!--                android:layout_width="wrap_content"-->
+    <!--                android:layout_height="wrap_content"-->
+    <!--                android:text="Blog"-->
+    <!--                android:layout_marginTop="@dimen/_12sdp"-->
+    <!--                android:textSize="@dimen/_12sdp"-->
+    <!--                android:textStyle="bold"-->
+    <!--                android:textColor="@color/black"-->
+    <!--                />-->
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Video"
-                android:layout_marginTop="@dimen/_12sdp"
-                android:textSize="@dimen/_12sdp"
-                android:textStyle="bold"
-                android:textColor="@color/black"
-                />
+    <!--            <androidx.recyclerview.widget.RecyclerView-->
+    <!--                android:id="@+id/rv_blog"-->
+    <!--                android:layout_width="match_parent"-->
+    <!--                android:layout_height="@dimen/_208sdp"-->
+    <!--                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"-->
+    <!--                android:layout_marginTop="@dimen/_4sdp"-->
+    <!--                app:layout_constraintBottom_toBottomOf="parent"-->
+    <!--                app:layout_constraintEnd_toEndOf="parent"-->
+    <!--                app:layout_constraintHorizontal_bias="1.0"-->
+    <!--                app:layout_constraintStart_toStartOf="parent"-->
+    <!--                tools:listitem="@layout/item_blog"-->
+    <!--                />-->
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_video"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_208sdp"
-                android:layout_marginTop="@dimen/_4sdp"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toStartOf="parent"
-                tools:listitem="@layout/item_blog" />
-    </LinearLayout>
+    <!--            <TextView-->
+    <!--                android:layout_width="wrap_content"-->
+    <!--                android:layout_height="wrap_content"-->
+    <!--                android:text="Video"-->
+    <!--                android:layout_marginTop="@dimen/_12sdp"-->
+    <!--                android:textSize="@dimen/_12sdp"-->
+    <!--                android:textStyle="bold"-->
+    <!--                android:textColor="@color/black"-->
+    <!--                />-->
 
-</ScrollView>
+    <!--            <androidx.recyclerview.widget.RecyclerView-->
+    <!--                android:id="@+id/rv_video"-->
+    <!--                android:layout_width="match_parent"-->
+    <!--                android:layout_height="@dimen/_208sdp"-->
+    <!--                android:layout_marginTop="@dimen/_4sdp"-->
+    <!--                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"-->
+    <!--                app:layout_constraintBottom_toBottomOf="parent"-->
+    <!--                app:layout_constraintEnd_toEndOf="parent"-->
+    <!--                app:layout_constraintHorizontal_bias="1.0"-->
+    <!--                app:layout_constraintStart_toStartOf="parent"-->
+    <!--                tools:listitem="@layout/item_blog" />-->
+    <!--    </LinearLayout>-->
+
+</LinearLayout>

@@ -5,12 +5,12 @@ import android.view.ViewGroup
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.capstone.hydroandroid.data.network.response.search.ResultItem
+import com.capstone.hydroandroid.data.network.response.search.ResponseItem
 import com.capstone.hydroandroid.databinding.ItemBlogBinding
 import com.capstone.hydroandroid.ui.search.SearchFragmentDirections
 
 class SearchAdapter(
-    private val listUser: List<ResultItem>
+    private val listUser: List<ResponseItem?>?
 ) : RecyclerView.Adapter<SearchAdapter.ViewHolder>(){
     class ViewHolder(val binding : ItemBlogBinding) : RecyclerView.ViewHolder(binding.root)
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -20,15 +20,16 @@ class SearchAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         with(holder.binding){
             Glide.with(holder.itemView.context)
-                .load(listUser[position].photoUrl)
+                .load(listUser?.get(position)?.imageUrl)
                 .into(holder.binding.photoImageView)
-            holder.binding.tittleTextView.text = listUser[position].title
+            holder.binding.tittleTextView.text = listUser?.get(position)?.blogTitle
         }
         holder.itemView.setOnClickListener {
-            it.findNavController().navigate(SearchFragmentDirections.actionSearchFragmentToDetailFragment(listUser[position].blogId))
+            it.findNavController().navigate(SearchFragmentDirections.actionSearchFragmentToDetailFragment(
+                listUser?.get(position)?.blogId.toString()))
         }
     }
     override fun getItemCount(): Int {
-        return listUser.size
+        return listUser?.size ?: 0
     }
 }

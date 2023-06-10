@@ -66,26 +66,24 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    private fun startCameraX() {
-        val intent = Intent(this, CameraActivity::class.java)
-        launcherIntentCameraX.launch(intent)
-    }
-
-    private val launcherIntentCameraX = registerForActivityResult(
-        ActivityResultContracts.StartActivityForResult()
-    ) {
-        if (it.resultCode == CAMERA_X_RESULT) {
-            val myFile = it.data?.getSerializableExtra("picture") as File
-            val isBackCamera = it.data?.getBooleanExtra("isBackCamera", true) as Boolean
-
-            val result = rotateBitmap(
-                BitmapFactory.decodeFile(myFile.path),
-                isBackCamera
-            )
-
-//            binding.previewImageView.setImageBitmap(result)
-        }
-    }
+//    private fun startCameraX() {
+//        val intent = Intent(this, CameraActivity::class.java)
+//        launcherIntentCameraX.launch(intent)
+//    }
+//
+//    private val launcherIntentCameraX = registerForActivityResult(
+//        ActivityResultContracts.StartActivityForResult()
+//    ) {
+//        if (it.resultCode == CAMERA_X_RESULT) {
+//            val myFile = it.data?.getSerializableExtra("picture") as File
+//            val isBackCamera = it.data?.getBooleanExtra("isBackCamera", true) as Boolean
+//
+//            val result = rotateBitmap(
+//                BitmapFactory.decodeFile(myFile.path),
+//                isBackCamera
+//            )
+//        }
+//    }
 
     private fun setUpBottomNav(){
         val navView: BottomNavigationView = binding.navView
@@ -129,6 +127,9 @@ class MainActivity : AppCompatActivity() {
                 R.id.fab -> {
                     Toast.makeText(this, "Ini Camera", Toast.LENGTH_SHORT).show()
                     startActivity(Intent(this@MainActivity,CameraActivity::class.java))
+                }
+                R.id.navigation_forum_diskusi ->{
+                    showButtonNav()
                 }
                 else -> hideButtonNav()
             }
