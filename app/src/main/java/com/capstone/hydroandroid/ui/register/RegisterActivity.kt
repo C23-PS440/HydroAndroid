@@ -40,7 +40,7 @@ class RegisterActivity : AppCompatActivity(){
         viewModel.register(data).observe(this) {
 
             val dialogLoading = Dialog(this)
-            dialogLoading.setContentView(R.layout.failed_dialog)
+            dialogLoading.setContentView(R.layout.fragment_dialog_failed_register)
 
             when (it) {
                 is EventResult.Error -> {

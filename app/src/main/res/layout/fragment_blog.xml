@@ -17,5 +17,4 @@
         app:layout_constraintStart_toStartOf="parent"
         tools:listitem="@layout/item_blog_crd" />
 
-
 </FrameLayout>
