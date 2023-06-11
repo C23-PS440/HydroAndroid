@@ -1,29 +1,27 @@
 package com.capstone.hydroandroid.ui.home
 
 import android.os.Bundle
+import android.os.Handler
 import android.util.Log
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.SearchView
 import android.widget.Toast
-import android.widget.VideoView
-import androidx.navigation.fragment.findNavController
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.LinearSnapHelper
+import androidx.recyclerview.widget.RecyclerView
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.capstone.hydroandroid.R
 import com.capstone.hydroandroid.adapter.BlogAdapter
+import com.capstone.hydroandroid.adapter.CarouselAdapter
+import com.capstone.hydroandroid.adapter.CarouselData
 import com.capstone.hydroandroid.adapter.SearchAdapter
-import com.capstone.hydroandroid.adapter.VideoAdapter
 import com.capstone.hydroandroid.data.network.EventResult
 import com.capstone.hydroandroid.databinding.FragmentHomeBinding
-import com.capstone.hydroandroid.ui.profile.ProfileViewModel
 import com.capstone.hydroandroid.ui.search.SearchViewModel
-import com.capstone.hydroandroid.ui.video.VideoViewModel
-import com.google.android.exoplayer2.ExoPlayer
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import java.util.*
 
 
 class HomeFragment : Fragment(R.layout.fragment_home) {
@@ -31,8 +29,16 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     private val blogViewModel: HomeViewModel by viewModel()
     private val searchViewModel: SearchViewModel by viewModel()
 
+    //menambahkan carousel dari recyclerview dan timer
+    private lateinit var recyclerView: RecyclerView
+    private lateinit var carouselAdapter: CarouselAdapter
+
+    private lateinit var autoScrollTimer: Timer
+    private val AUTO_SCROLL_DELAY: Long = 3000
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         fetchBlog()
         binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
@@ -57,6 +63,50 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         }
         )
         fetchUsername()
+
+        recyclerView = view.findViewById(R.id.recyclerView)
+
+        recyclerView.layoutManager = LinearLayoutManager(
+            requireContext(),
+            LinearLayoutManager.HORIZONTAL,
+            false
+        )
+
+        carouselAdapter = CarouselAdapter(getItems())
+        recyclerView.adapter = carouselAdapter
+
+        val snapHelper = LinearSnapHelper()
+        snapHelper.attachToRecyclerView(recyclerView)
+
+        startAutoScroll()
+    }
+
+    private fun startAutoScroll() {
+        autoScrollTimer = Timer()
+        autoScrollTimer.schedule(object : TimerTask() {
+            override fun run() {
+                val layoutManager = recyclerView.layoutManager as LinearLayoutManager
+                val firstVisibleItemPosition = layoutManager.findFirstVisibleItemPosition()
+                val nextPosition = (firstVisibleItemPosition + 1) % carouselAdapter.itemCount
+
+                requireActivity().runOnUiThread {
+                    recyclerView.smoothScrollToPosition(nextPosition)
+                }
+            }
+        }, AUTO_SCROLL_DELAY, AUTO_SCROLL_DELAY)
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        autoScrollTimer.cancel()
+    }
+
+    private fun getItems(): List<CarouselData> {
+        val carouselDataList = mutableListOf<CarouselData>()
+        carouselDataList.add(CarouselData(R.drawable.hydro1))
+        carouselDataList.add(CarouselData(R.drawable.hydro2))
+        carouselDataList.add(CarouselData(R.drawable.hydro3))
+        return carouselDataList
     }
 
     private fun fetchBlog() {
