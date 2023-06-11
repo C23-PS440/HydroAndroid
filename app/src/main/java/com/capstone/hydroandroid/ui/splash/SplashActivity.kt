@@ -19,16 +19,15 @@ class SplashActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
 
-//        startActivity(Intent(this@SplashActivity, MainActivity::class.java))
-
         lifecycleScope.launch {
             viewModel.isLogin.collect{
-                Log.d("error apa nih", it.toString())
                 if (it){
                     startActivity(Intent(this@SplashActivity, MainActivity::class.java))
+                    finish()
                 }
                 else {
                     startActivity(Intent(this@SplashActivity, LoginActivity::class.java))
+                    finish()
                 }
             }
         }
