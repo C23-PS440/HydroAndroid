@@ -38,7 +38,7 @@
             android:layout_height="wrap_content"
             android:text="Test"
             android:textColor="@color/black"
-            android:textSize="14sp"
+            android:textSize="8sp"
             android:textStyle="bold"
             android:layout_gravity="center"/>
 

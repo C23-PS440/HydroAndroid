@@ -14,7 +14,7 @@ import java.util.concurrent.TimeUnit
 
 private const val BASE_URL = "https://7602-125-166-118-253.ngrok-free.app/latihan/"
 
-private const val BASE_URL_API = "https://4369-2001-448a-106d-4807-65-d13a-4c16-317.ngrok-free.app/"
+private const val BASE_URL_API = "https://5d6c-2001-448a-106d-4807-6dca-d607-7c78-5996.ngrok-free.app/"
 
 val databaseModule = module {
 
@@ -57,7 +57,7 @@ private fun createConverterFactory(): GsonConverterFactory {
 private inline fun <reified T> createService(
     okHttpClient: OkHttpClient,
     converterFactory: GsonConverterFactory,
-    baseUrl: String = BASE_URL
+    baseUrl: String = BASE_URL_API
 ): T {
     return Retrofit.Builder()
         .baseUrl(baseUrl)
