@@ -60,7 +60,11 @@
         android:id="@+id/navigation_blog"
         android:name="com.capstone.hydroandroid.ui.blog.BlogFragment"
         android:label="fragment_blog"
-        tools:layout="@layout/fragment_blog" />
+        tools:layout="@layout/fragment_blog" >
+        <action
+            android:id="@+id/action_navigation_blog_to_detailFragment"
+            app:destination="@id/detailFragment" />
+    </fragment>
     <fragment
         android:id="@+id/navigation_forum_diskusi"
         android:name="com.capstone.hydroandroid.ui.forum.ForumDiskusiFragment"

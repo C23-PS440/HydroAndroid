@@ -37,6 +37,8 @@ class CameraActivity : AppCompatActivity() {
         }
     }
 
+
+
     public override fun onResume() {
         super.onResume()
         hideSystemUI()

@@ -12,6 +12,9 @@ import com.capstone.hydroandroid.source.home.HomeRepositoryImpl
 import com.capstone.hydroandroid.source.login.LoginRemoteDataSource
 import com.capstone.hydroandroid.source.login.LoginRepository
 import com.capstone.hydroandroid.source.login.LoginRepositoryImpl
+import com.capstone.hydroandroid.source.pendeteksi.PendeteksiRemoteDataSource
+import com.capstone.hydroandroid.source.pendeteksi.PendeteksiRepository
+import com.capstone.hydroandroid.source.pendeteksi.PendeteksiRepositoryImpl
 import com.capstone.hydroandroid.source.profile.ProfileRemoteDataSource
 import com.capstone.hydroandroid.source.profile.ProfileRepository
 import com.capstone.hydroandroid.source.profile.ProfileRepositoryImpl
@@ -30,6 +33,7 @@ import com.capstone.hydroandroid.storage.AppLocalData
 import com.capstone.hydroandroid.storage.SharedPreferencesStorage
 import com.capstone.hydroandroid.storage.Storage
 import com.capstone.hydroandroid.ui.blog.BlogViewModel
+import com.capstone.hydroandroid.ui.camera.PendeteksiViewModel
 import com.capstone.hydroandroid.ui.detail.DetailViewModel
 import com.capstone.hydroandroid.ui.home.HomeViewModel
 import com.capstone.hydroandroid.ui.login.LoginViewModel
@@ -50,6 +54,7 @@ val remoteDataSourceModule = module {
     single{ VideoRemoteDataSource(get()) }
     single{ ProfileRemoteDataSource(get()) }
     single { BlogRemoteDataSource(get())}
+    single { PendeteksiRemoteDataSource(get())}
 }
 
 val repositoryModule = module {
@@ -62,6 +67,7 @@ val repositoryModule = module {
     single<ProfileRepository>{ ProfileRepositoryImpl(get()) }
     single<BlogRepository>{ BlogRepositoryImpl(get()) }
     single<SplashRepository>{ SplashRepositoryImpl(get())}
+    single<PendeteksiRepository>{ PendeteksiRepositoryImpl(get())}
 }
 
 val viewModelModule = module {
@@ -74,6 +80,7 @@ val viewModelModule = module {
     single{ ProfileViewModel(get(), get()) }
     single{ BlogViewModel(get()) }
     single{ SplashViewModel(get()) }
+    single{ PendeteksiViewModel(get()) }
 }
 
 val storageModule = module {

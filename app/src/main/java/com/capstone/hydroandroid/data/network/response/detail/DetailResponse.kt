@@ -4,21 +4,36 @@ import com.google.gson.annotations.SerializedName
 
 data class DetailResponse(
 
-	@field:SerializedName("date")
-	val date: String,
+	@field:SerializedName("response")
+	val response: Response,
 
-	@field:SerializedName("photoUrl")
-	val photoUrl: String,
+	@field:SerializedName("error")
+	val error: Boolean,
 
-	@field:SerializedName("name")
-	val name: String,
+	@field:SerializedName("message")
+	val message: String
+)
 
-	@field:SerializedName("description")
-	val description: String,
+data class Response(
 
-	@field:SerializedName("title")
-	val title: String,
+	@field:SerializedName("blogDescription")
+	val blogDescription: String,
+
+	@field:SerializedName("dateCreated")
+	val dateCreated: String,
+
+	@field:SerializedName("createdBy")
+	val createdBy: String,
+
+	@field:SerializedName("imageUrl")
+	val imageUrl: String,
 
 	@field:SerializedName("blogId")
-	val blogId: String
+	val blogId: Int,
+
+	@field:SerializedName("userId")
+	val userId: String,
+
+	@field:SerializedName("blogTitle")
+	val blogTitle: String
 )

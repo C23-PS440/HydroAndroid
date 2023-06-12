@@ -7,6 +7,7 @@ import com.capstone.hydroandroid.data.network.response.profile.ProfileResponse
 import com.capstone.hydroandroid.data.network.response.register.RegisterResponse
 import retrofit2.Response
 import retrofit2.http.Body
+import retrofit2.http.FormUrlEncoded
 import retrofit2.http.GET
 import retrofit2.http.POST
 
