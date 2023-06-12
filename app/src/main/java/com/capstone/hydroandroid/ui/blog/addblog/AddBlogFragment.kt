@@ -49,7 +49,6 @@ class AddBlogFragment : DialogFragment(R.layout.fragment_add_blog) {
             uploadBlog()
             dismiss()
         }
-
     }
     private fun chooseImageDialog() {
         androidx.appcompat.app.AlertDialog.Builder(requireContext())
@@ -98,6 +97,8 @@ class AddBlogFragment : DialogFragment(R.layout.fragment_add_blog) {
             binding.imgInputImgBlog.setImageBitmap(result)
         }
     }
+
+
     @RequiresApi(Build.VERSION_CODES.O)
     private fun uploadBlog() {
         if (getFile != null) {
@@ -110,7 +111,7 @@ class AddBlogFragment : DialogFragment(R.layout.fragment_add_blog) {
             val formattedDateTime = currentTime.format(formatter)
             val imageMultipart: MultipartBody.Part = MultipartBody.Part.createFormData(
                 "file",
-                "${file.name}date$formattedDateTime",
+                "$formattedDateTime${file.name}",
                 requestImageFile
             )
             viewModel.uploadBlog(imageMultipart,tittle,description).observe(viewLifecycleOwner){
@@ -125,8 +126,8 @@ class AddBlogFragment : DialogFragment(R.layout.fragment_add_blog) {
                     is EventResult.Loading -> {
                     }
                     is EventResult.Success -> {
+                        Toast.makeText(context,it.data.message,Toast.LENGTH_SHORT).show()
                         dismiss()
-                        Toast.makeText(requireContext(),it.data.message,Toast.LENGTH_SHORT).show()
                     }
                 }
             }

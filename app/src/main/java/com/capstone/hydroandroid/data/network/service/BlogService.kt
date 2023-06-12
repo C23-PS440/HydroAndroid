@@ -4,6 +4,7 @@ import com.capstone.hydroandroid.data.network.response.addBlog.AddBlogResponse
 import com.capstone.hydroandroid.data.network.response.blog.UserBlogResponse
 import com.capstone.hydroandroid.data.network.response.detail.DetailResponse
 import com.capstone.hydroandroid.data.network.response.home.HomeResponse
+import com.capstone.hydroandroid.data.network.response.pendeteksi.PredictResponse
 import com.capstone.hydroandroid.data.network.response.search.SearchResponse
 import com.capstone.hydroandroid.data.network.response.video.VideoResponse
 import okhttp3.MultipartBody
@@ -21,7 +22,7 @@ interface BlogService {
     @GET("blogs")
     suspend fun getAllBlog(): Response<HomeResponse>
 
-    @GET("blog/{blogId}")
+    @GET("blogs/{blogId}")
     suspend fun getDetailBlog(
         @Path("blogId") blogId : String
     ) : Response<DetailResponse>
@@ -44,6 +45,12 @@ interface BlogService {
         @Part("blogTitle") blogTitle : RequestBody,
         @Part("blogDescription") blogDescription : RequestBody
     ) : Response<AddBlogResponse>
+
+    @Multipart
+    @POST("predict")
+    suspend fun pendeteksiBlog(
+        @Part file: MultipartBody.Part
+    ) : Response<PredictResponse>
 
 
 }

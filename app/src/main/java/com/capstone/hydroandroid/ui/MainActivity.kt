@@ -4,6 +4,7 @@ import android.Manifest
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.BitmapFactory
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -18,17 +19,34 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.capstone.hydroandroid.R
+import com.capstone.hydroandroid.data.network.EventResult
 import com.capstone.hydroandroid.databinding.ActivityMainBinding
+import com.capstone.hydroandroid.reduceFileImage
 import com.capstone.hydroandroid.rotateBitmap
 import com.capstone.hydroandroid.ui.blog.addblog.AddBlogFragment
 import com.capstone.hydroandroid.ui.camera.CameraActivity
+import com.capstone.hydroandroid.ui.camera.CameraActivityDeteksi
 import com.capstone.hydroandroid.ui.camera.CameraFragment
+import com.capstone.hydroandroid.ui.camera.PendeteksiViewModel
 import com.capstone.hydroandroid.ui.home.HomeFragmentDirections
+import com.capstone.hydroandroid.ui.login.LoginViewModel
+import com.capstone.hydroandroid.uriToFile
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import okhttp3.MediaType.Companion.toMediaType
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.MultipartBody
+import okhttp3.RequestBody.Companion.asRequestBody
+import okhttp3.RequestBody.Companion.toRequestBody
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.io.File
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
+
+
+
 
     override fun onRequestPermissionsResult(
         requestCode: Int,
@@ -66,25 +84,6 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-//    private fun startCameraX() {
-//        val intent = Intent(this, CameraActivity::class.java)
-//        launcherIntentCameraX.launch(intent)
-//    }
-//
-//    private val launcherIntentCameraX = registerForActivityResult(
-//        ActivityResultContracts.StartActivityForResult()
-//    ) {
-//        if (it.resultCode == CAMERA_X_RESULT) {
-//            val myFile = it.data?.getSerializableExtra("picture") as File
-//            val isBackCamera = it.data?.getBooleanExtra("isBackCamera", true) as Boolean
-//
-//            val result = rotateBitmap(
-//                BitmapFactory.decodeFile(myFile.path),
-//                isBackCamera
-//            )
-//        }
-//    }
-
     private fun setUpBottomNav(){
         val navView: BottomNavigationView = binding.navView
         navView.background = null
@@ -95,16 +94,14 @@ class MainActivity : AppCompatActivity() {
                 R.id.navigation_home -> {
                     setUpIconCamera()
                     binding.fab.setOnClickListener {
-                        Toast.makeText(this, "Home",Toast.LENGTH_SHORT).show()
-                        startActivity(Intent(this@MainActivity,CameraActivity::class.java))
+                        startActivity(Intent(this@MainActivity,CameraActivityDeteksi::class.java))
                     }
                     showButtonNav()
                 }
                 R.id.navigation_profile -> {
                     setUpIconCamera()
                     binding.fab.setOnClickListener {
-                        Toast.makeText(this, "Profile",Toast.LENGTH_SHORT).show()
-                        startActivity(Intent(this@MainActivity,CameraActivity::class.java))
+                        startActivity(Intent(this@MainActivity,CameraActivityDeteksi::class.java))
                     }
                     showButtonNav()
                 }
@@ -118,15 +115,13 @@ class MainActivity : AppCompatActivity() {
                 R.id.navigation_search -> {
                     setUpIconCamera()
                     binding.fab.setOnClickListener {
-                        Toast.makeText(this, "Profile",Toast.LENGTH_SHORT).show()
-                        startActivity(Intent(this@MainActivity,CameraActivity::class.java))
+                        startActivity(Intent(this@MainActivity,CameraActivityDeteksi::class.java))
                     }
                     showButtonNav()
                 }
                 R.id.place_holder -> navView.menu.getItem(2).isEnabled = false
                 R.id.fab -> {
-                    Toast.makeText(this, "Ini Camera", Toast.LENGTH_SHORT).show()
-                    startActivity(Intent(this@MainActivity,CameraActivity::class.java))
+                    startActivity(Intent(this@MainActivity,CameraActivityDeteksi::class.java))
                 }
                 R.id.navigation_forum_diskusi ->{
                     showButtonNav()
@@ -152,6 +147,20 @@ class MainActivity : AppCompatActivity() {
     private fun setUpIconCamera(){
         binding.fab.setImageResource(R.drawable.camera)
     }
+
+
+//    private fun chooseImageDialog() {
+//        androidx.appcompat.app.AlertDialog.Builder(this)
+//            .setMessage("Pilih Gambar")
+//            .setPositiveButton("Gallery") { _, _ -> startGallery() }
+//            .setNegativeButton("Camera") { _, _ -> startCameraX() }
+//            .show()
+//    }
+
+
+
+
+
 
     companion object {
         const val CAMERA_X_RESULT = 200

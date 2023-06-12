@@ -4,6 +4,7 @@ import android.app.Dialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import com.capstone.hydroandroid.R
@@ -31,57 +32,54 @@ class LoginActivity : AppCompatActivity() {
             loginAction()
         }
         binding.txtRegister.setOnClickListener {
-            startActivity(Intent(this@LoginActivity , RegisterActivity::class.java))
+            startActivity(Intent(this@LoginActivity, RegisterActivity::class.java))
         }
 
     }
 
-        private fun loginAction(){
+    private fun loginAction() {
         val data = LoginRequest(
             email = binding.email.text.toString(),
             password = binding.password.text.toString()
         )
+        val dialogLoading = Dialog(this)
+        dialogLoading.setContentView(R.layout.fragment_dialog_failed_register)
+
 
         viewModel.login(data).observe(this) {
-
-            val dialogLoading = Dialog(this)
-            dialogLoading.setContentView(R.layout.loading_dialog)
-
-
             when (it) {
                 is EventResult.Error -> {
                     dialogLoading.dismiss()
-//                    hideUi()
                     Toast.makeText(this, it.error, Toast.LENGTH_SHORT).show()
                 }
                 is EventResult.Loading -> {
                     showUi()
-
                     dialogLoading.show()
                 }
                 is EventResult.Success -> {
+                    Toast.makeText(this, "LESGOOO", Toast.LENGTH_SHORT).show()
                     dialogLoading.dismiss()
                     showUi()
                     val userLoggedIn = UserLoggedIn(
-                        userId =   it.data.loginResult.userId,
+                        userId = it.data.loginResult.userId,
                         name = it.data.loginResult.name,
-                        token =  it.data.loginResult.token,
+                        token = it.data.loginResult.token,
                         email = it.data.loginResult.email
                     )
                     viewModel.setUserLoggedIn(userLoggedIn)
-                    Toast.makeText(this, it.data.message, Toast.LENGTH_SHORT).show()
-                    startActivity(Intent(this@LoginActivity , MainActivity::class.java))
+                    startActivity(Intent(this , MainActivity::class.java))
                 }
             }
         }
     }
 
 
-    private fun showUi(){
+    private fun showUi() {
         binding.loginView.visibility = View.VISIBLE
         binding.errorView.visibility = View.GONE
     }
-    private fun hideUi(){
+
+    private fun hideUi() {
         binding.loginView.visibility = View.GONE
         binding.errorView.visibility = View.VISIBLE
     }
