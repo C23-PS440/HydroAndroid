@@ -4,15 +4,18 @@ import android.app.Dialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Patterns
 import android.view.KeyEvent
 import android.view.View
 import android.widget.Toast
+import androidx.core.widget.doOnTextChanged
 import com.capstone.hydroandroid.R
 import com.capstone.hydroandroid.data.network.EventResult
 import com.capstone.hydroandroid.data.network.request.LoginRequest
 import com.capstone.hydroandroid.databinding.ActivityLoginBinding
 import com.capstone.hydroandroid.storage.UserLoggedIn
 import com.capstone.hydroandroid.ui.MainActivity
+import com.capstone.hydroandroid.ui.custom.CustomInputPassword
 import com.capstone.hydroandroid.ui.register.RegisterActivity
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -42,6 +45,16 @@ class LoginActivity : AppCompatActivity() {
         binding.password.setOnKeyListener { _, keyCode, _ ->
             keyCode == KeyEvent.KEYCODE_ENTER
         }
+
+        binding.email.doOnTextChanged { _, _, _, _ ->
+            setCustomButtonEnable()
+        }
+
+        binding.password.doOnTextChanged { _, _, _, _ ->
+            setCustomButtonEnable()
+        }
+
+        setCustomButtonEnable()
 
     }
 
@@ -81,6 +94,16 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
+    private fun String.isValidEmail(): Boolean = this.isNotEmpty() && Patterns.EMAIL_ADDRESS.matcher(this).matches()
+
+    private fun setCustomButtonEnable() {
+        val emailEdt = binding.email.text.toString().trim()
+        val emailValidator = emailEdt.isValidEmail() && emailEdt.isNotEmpty()
+        val passwordEdt = binding.password.text.toString().trim()
+        val passwordValidator = passwordEdt.length >= CustomInputPassword.MIN_PASSWORD && passwordEdt.isNotEmpty()
+
+        binding.loginButton.isEnabled = emailValidator && passwordValidator
+    }
 
     private fun showUi() {
         binding.loginView.visibility = View.VISIBLE

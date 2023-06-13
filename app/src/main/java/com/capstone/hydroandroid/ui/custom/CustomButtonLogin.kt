@@ -9,7 +9,7 @@ import androidx.appcompat.widget.AppCompatButton
 import androidx.core.content.ContextCompat
 import com.capstone.hydroandroid.R
 
-class CustomButtonRegister : AppCompatButton {
+class CustomButtonLogin : AppCompatButton {
 
     private lateinit var enabledBackground: Drawable
     private lateinit var disabledBackground: Drawable
@@ -34,7 +34,7 @@ class CustomButtonRegister : AppCompatButton {
         setTextColor(txtColor)
         textSize = 12f
         gravity = Gravity.CENTER
-        text = if(isEnabled) "Register" else "Isi Dulu"
+        text = if(isEnabled) "Login" else "Isi Dulu"
     }
 
     private fun init() {
