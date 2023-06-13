@@ -68,7 +68,8 @@
                 android:hint="Password"
                 android:padding="8dp"
                 android:paddingStart="20dp"
-                android:textColor="@color/black" />
+                android:textColor="@color/black"
+                android:inputType="textPassword" />
 
             <Button
                 android:id="@+id/loginButton"
