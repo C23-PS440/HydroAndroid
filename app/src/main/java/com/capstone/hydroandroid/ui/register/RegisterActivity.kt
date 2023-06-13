@@ -4,6 +4,7 @@ import android.app.Dialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.KeyEvent
 import android.widget.Toast
 import com.capstone.hydroandroid.R
 import com.capstone.hydroandroid.data.network.EventResult
@@ -27,6 +28,17 @@ class RegisterActivity : AppCompatActivity(){
         }
         binding.txtLogin.setOnClickListener {
             startActivity(Intent(this@RegisterActivity,LoginActivity::class.java))
+        }
+
+        binding.name.setOnKeyListener { _, keyCode, _ ->
+            keyCode == KeyEvent.KEYCODE_ENTER
+        }
+        binding.email.setOnKeyListener { _, keyCode, _ ->
+            keyCode == KeyEvent.KEYCODE_ENTER
+        }
+
+        binding.password.setOnKeyListener { _, keyCode, _ ->
+            keyCode == KeyEvent.KEYCODE_ENTER
         }
     }
 
