@@ -11,5 +11,6 @@
     <color name="borderline">#B7B7B7</color>
     <color name="green">#20522C</color>
     <color name="soft_green">#e1efe1</color>
+    <color name="light_green">#7AD790</color>
     <color name="dark_grey">#898989</color>
 </resources>
