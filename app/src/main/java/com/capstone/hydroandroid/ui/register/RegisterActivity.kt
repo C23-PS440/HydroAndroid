@@ -4,15 +4,19 @@ import android.app.Dialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Patterns
 import android.view.KeyEvent
 import android.widget.Toast
+import androidx.core.widget.doOnTextChanged
 import com.capstone.hydroandroid.R
 import com.capstone.hydroandroid.data.network.EventResult
 import com.capstone.hydroandroid.data.network.request.RegisterRequest
 import com.capstone.hydroandroid.databinding.ActivityRegisterBinding
+import com.capstone.hydroandroid.ui.custom.CustomInputPassword
 import com.capstone.hydroandroid.ui.custom.DialogFailedRegisterFragment
 import com.capstone.hydroandroid.ui.login.LoginActivity
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import org.koin.core.component.getScopeName
 
 class RegisterActivity : AppCompatActivity(){
     private lateinit var binding: ActivityRegisterBinding
@@ -40,6 +44,17 @@ class RegisterActivity : AppCompatActivity(){
         binding.password.setOnKeyListener { _, keyCode, _ ->
             keyCode == KeyEvent.KEYCODE_ENTER
         }
+        binding.name.doOnTextChanged { _, _, _, _ ->
+            setCustomButtonEnable()
+        }
+        binding.email.doOnTextChanged { _, _, _, _ ->
+            setCustomButtonEnable()
+        }
+        binding.password.doOnTextChanged { _, _, _, _ ->
+            setCustomButtonEnable()
+        }
+
+        setCustomButtonEnable()
     }
 
     private fun registerAction(){
@@ -70,5 +85,18 @@ class RegisterActivity : AppCompatActivity(){
                 }
             }
         }
+    }
+
+    private fun String.isValidEmail(): Boolean = this.isNotEmpty() && Patterns.EMAIL_ADDRESS.matcher(this).matches()
+
+    private fun setCustomButtonEnable() {
+        val emailEdt = binding.email.text.toString().trim()
+        val emailValidator = emailEdt.isValidEmail() && emailEdt.isNotEmpty()
+        val nameEdt = binding.name.text.toString().trim()
+        val nameValidator = nameEdt.isNotEmpty()
+        val passwordEdt = binding.password.text.toString().trim()
+        val passwordValidator = passwordEdt.length >= CustomInputPassword.MIN_PASSWORD && passwordEdt.isNotEmpty()
+
+        binding.registerButton.isEnabled = emailValidator && nameValidator && passwordValidator
     }
 }

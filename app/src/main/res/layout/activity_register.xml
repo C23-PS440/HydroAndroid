@@ -33,7 +33,7 @@
             android:textStyle="bold"
             android:textColor="@color/black" />
 
-        <EditText
+        <com.capstone.hydroandroid.ui.custom.CustomInputName
             android:id="@+id/name"
             android:layout_width="350dp"
             android:layout_height="60dp"
@@ -47,7 +47,7 @@
             android:paddingStart="20dp"
             android:textColor="@color/black" />
 
-        <EditText
+        <com.capstone.hydroandroid.ui.custom.CustomInputEmail
             android:id="@+id/email"
             android:layout_width="350dp"
             android:layout_height="60dp"
@@ -61,7 +61,7 @@
             android:paddingStart="20dp"
             android:textColor="@color/black" />
 
-        <EditText
+        <com.capstone.hydroandroid.ui.custom.CustomInputPassword
             android:id="@+id/password"
             android:layout_width="350dp"
             android:layout_height="60dp"
@@ -76,14 +76,15 @@
             android:textColor="@color/black"
             android:inputType="textPassword" />
 
-        <Button
+        <com.capstone.hydroandroid.ui.custom.CustomButtonRegister
             android:id="@+id/registerButton"
             android:layout_width="350dp"
             android:layout_height="60dp"
             android:layout_gravity="center"
             android:layout_marginTop="20dp"
-            android:background="@drawable/rounded_button"
-            android:text="REGISTER" />
+            android:text="REGISTER"
+            android:textColor="@android:color/white"
+            android:background="@drawable/rounded_button" />
 
         <LinearLayout
             android:layout_width="wrap_content"
