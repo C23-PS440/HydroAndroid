@@ -1,7 +1,6 @@
 package com.capstone.hydroandroid.ui.home
 
 import android.os.Bundle
-import android.os.Handler
 import android.util.Log
 import android.view.View
 import android.widget.SearchView
@@ -11,7 +10,6 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearSnapHelper
 import androidx.recyclerview.widget.RecyclerView
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.capstone.hydroandroid.R
 import com.capstone.hydroandroid.adapter.BlogAdapter
@@ -29,7 +27,6 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     private val binding: FragmentHomeBinding by viewBinding()
     private val blogViewModel: HomeViewModel by viewModel()
     private val searchViewModel: SearchViewModel by viewModel()
-    private val swipeRefreshLayout: SwipeRefreshLayout by viewBinding()
 
     //menambahkan carousel dari recyclerview dan timer
     private lateinit var recyclerView: RecyclerView
@@ -41,9 +38,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.swipeRefreshLayout.setOnRefreshListener {
-            fetchBlog()
-        }
+        fetchBlog()
 
         binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
@@ -115,7 +110,6 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     }
 
     private fun fetchBlog() {
-        swipeRefreshLayout.isRefreshing = true
 
         blogViewModel.getAllBlog().observe(viewLifecycleOwner) {
             when (it) {
@@ -133,8 +127,6 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
                     )
                     binding.rvBlog.layoutManager = layoutManager
                     binding.rvBlog.adapter = blogAdapter
-
-                    swipeRefreshLayout.isRefreshing = false
                 }
             }
         }
