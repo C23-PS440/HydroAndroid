@@ -36,9 +36,8 @@ class DetailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        //MINTOL RAPIKAN DIALOG
         val dialogLoading = Dialog(requireContext())
-        dialogLoading.setContentView(R.layout.fragment_dialog_failed_register)
+        dialogLoading.setContentView(R.layout.loading_dialog)
 
         viewModel.getDetailBlog(argument.blogId).observe(viewLifecycleOwner){
             when (it) {

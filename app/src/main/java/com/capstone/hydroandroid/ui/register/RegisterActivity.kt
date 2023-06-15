@@ -71,7 +71,6 @@ class RegisterActivity : AppCompatActivity(){
 
             when (it) {
                 is EventResult.Error -> {
-//                    dialogLoading.show()
                     DialogFailedRegisterFragment().show(supportFragmentManager,"dialog")
                     Toast.makeText(this, it.error, Toast.LENGTH_SHORT).show()
                 }

@@ -3,12 +3,12 @@
 
     <item
         android:id="@+id/navigation_home"
-        android:icon="@drawable/home"
+        android:icon="@drawable/home_high"
         android:title="Home" />
 
     <item
         android:id="@+id/navigation_blog"
-        android:icon="@drawable/blog"
+        android:icon="@drawable/computer_high"
         android:title="Blog" />
 
     <item
@@ -23,6 +23,6 @@
 
     <item
         android:id="@+id/navigation_profile"
-        android:icon="@drawable/person"
+        android:icon="@drawable/user_high"
         android:title="Profile" />
 </menu>

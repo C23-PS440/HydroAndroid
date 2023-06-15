@@ -64,7 +64,7 @@ class LoginActivity : AppCompatActivity() {
             password = binding.password.text.toString()
         )
         val dialogLoading = Dialog(this)
-        dialogLoading.setContentView(R.layout.fragment_dialog_failed_register)
+        dialogLoading.setContentView(R.layout.loading_dialog)
 
 
         viewModel.login(data).observe(this) {
