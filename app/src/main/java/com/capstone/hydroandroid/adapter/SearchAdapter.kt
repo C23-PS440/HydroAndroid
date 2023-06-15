@@ -22,7 +22,7 @@ class SearchAdapter(
             Glide.with(holder.itemView.context)
                 .load(listUser?.get(position)?.imageUrl)
                 .into(holder.binding.photoImageView)
-            holder.binding.tittleTextView.text = listUser?.get(position)?.blogTitle
+            holder.binding.titleTextView.text = listUser?.get(position)?.blogTitle
         }
         holder.itemView.setOnClickListener {
             it.findNavController().navigate(SearchFragmentDirections.actionSearchFragmentToDetailFragment(

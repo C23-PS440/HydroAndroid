@@ -15,7 +15,7 @@ class VideoAdapter (private val item : List<Video>) : RecyclerView.Adapter<Video
         return MainViewHolder(ItemBlogBinding.inflate(LayoutInflater.from(parent.context),parent,false))
     }
     override fun onBindViewHolder(holder: MainViewHolder, position: Int) {
-        holder.binding.tittleTextView.text= item[position].title
+        holder.binding.titleTextView.text= item[position].title
         val url = item[position].thumbnail
         Glide.with(holder.itemView.context)
             .load(url)

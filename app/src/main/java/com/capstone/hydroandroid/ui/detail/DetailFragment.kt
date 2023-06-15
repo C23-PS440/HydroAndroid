@@ -57,6 +57,7 @@ class DetailFragment : Fragment() {
                     binding.tvNameUser.text = it.data.response.createdBy
                     binding.tvBlogTitle.text = it.data.response.blogTitle
                     binding.tvDetailBlog.text = it.data.response.blogDescription
+                    binding.tvDateCreated.text = it.data.response.dateCreated
                 }
             }
         }

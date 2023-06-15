@@ -1,116 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/theme"
     tools:context=".ui.camera.CameraActivityDeteksi">
 
     <ImageView
+        android:id="@+id/background"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="210dp"
+        android:layout_marginBottom="-10dp"
+        android:src="@drawable/bg"
+        android:scaleType="centerCrop" />
+
+    <ImageView
         android:id="@+id/img_inputImgBlog"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:layout_centerInParent="true"
-        android:src="@drawable/gallery"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-
-    <Button
-        android:id="@+id/btn_addPhoto"
-        android:layout_width="wrap_content"
-        android:layout_height="40dp"
-        android:layout_gravity="right"
-        android:layout_marginTop="32dp"
-        android:background="@drawable/rounded_button"
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp"
-        android:text="Tambah Foto"
-        android:textAllCaps="false"
-        android:textColor="@color/white"
-        android:textSize="15sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/img_inputImgBlog" />
-
-    <Button
-        android:id="@+id/btn_post"
-        android:layout_width="wrap_content"
-        android:layout_height="40dp"
-        android:layout_gravity="right"
-        android:layout_marginTop="20dp"
-        android:background="@drawable/rounded_button"
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp"
-        android:text="Post Foto"
-        android:textAllCaps="false"
-        android:textColor="@color/white"
-        android:textSize="15sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_addPhoto" />
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:layout_marginTop="80dp"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/picture" />
 
     <TextView
         android:id="@+id/plantName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="56dp"
-        android:text="PLANT NAME"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_post" />
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/img_inputImgBlog"
+        tools:text="Nama Tanaman"
+        android:textStyle="bold"
+        android:textSize="24sp"
+        android:layout_marginTop="30dp"
+        android:textColor="@color/black" />
 
     <TextView
         android:id="@+id/diseaseName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
-        android:text="DISEASE NAME"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/plantName" />
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/plantName"
+        tools:text="Nama Penyakit"
+        android:textStyle="italic"
+        android:textSize="20sp"
+        android:layout_marginTop="30dp" />
 
     <TextView
         android:id="@+id/diseaseRecognition"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
-        android:text="Disease Recognition"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/diseaseName" />
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/diseaseName"
+        tools:text="Penyakit tanaman adalah gangguan atau kelainan yang terjadi pada tanaman yang disebabkan oleh berbagai faktor, seperti bakteri, jamur, virus, serangga, dan faktor lingkungan seperti kelembaban yang tinggi atau rendah, suhu yang tidak sesuai, atau kondisi tanah yang buruk."
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:justificationMode="inter_word"
+        android:textSize="16sp"
+        android:layout_marginTop="30dp" />
+
+    <Button
+        android:id="@+id/btn_post"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_below="@id/diseaseRecognition"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/rounded_button"
+        android:text="Deteksi"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="15sp"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="20dp"/>
 
 
-    <!--    <androidx.camera.view.PreviewView-->
-<!--        android:id="@+id/viewFinder"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="match_parent" />-->
-
-<!--    <ImageView-->
-<!--        android:id="@+id/captureImage"-->
-<!--        android:layout_width="60dp"-->
-<!--        android:layout_height="60dp"-->
-<!--        android:layout_marginBottom="16dp"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:srcCompat="@drawable/ic_capture" />-->
-
-<!--    <ImageView-->
-<!--        android:id="@+id/switchCamera"-->
-<!--        android:layout_width="40dp"-->
-<!--        android:layout_height="40dp"-->
-<!--        android:layout_marginTop="16dp"-->
-<!--        android:layout_marginEnd="16dp"-->
-<!--        app:layout_constraintEnd_toEndOf="@+id/viewFinder"-->
-<!--        app:layout_constraintTop_toTopOf="parent"-->
-<!--        app:srcCompat="@drawable/ic_switch_camera" />-->
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>

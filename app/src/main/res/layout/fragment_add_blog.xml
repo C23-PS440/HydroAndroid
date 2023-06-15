@@ -33,7 +33,7 @@
                 android:background="@android:color/transparent"
                 android:hint="Judul Blog"
                 android:singleLine="false"
-                android:textColor="#B7B7B7"
+                android:textColor="@color/black"
                 android:textSize="18sp" />
 
             <EditText
@@ -45,7 +45,7 @@
                 android:background="@android:color/transparent"
                 android:hint="Ceritakan Pengalaman Anda..."
                 android:singleLine="false"
-                android:textColor="#B7B7B7"
+                android:textColor="@color/black"
                 android:textSize="18sp" />
 
             <ImageView

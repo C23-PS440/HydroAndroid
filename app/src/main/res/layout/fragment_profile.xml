@@ -96,7 +96,7 @@
 
     </androidx.cardview.widget.CardView>
 
-    <Button
+    <com.capstone.hydroandroid.ui.custom.CustomButtonLogout
         android:id="@+id/logoutButton"
         android:layout_width="350dp"
         android:layout_height="60dp"
@@ -104,6 +104,7 @@
         android:layout_centerHorizontal="true"
         android:layout_gravity="center"
         android:layout_marginTop="150dp"
+        android:textColor="@color/white"
         android:background="@drawable/rounded_button"
         android:text="LOGOUT" />
 
