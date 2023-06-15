@@ -5,6 +5,7 @@ import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -47,7 +48,7 @@ class AddBlogFragment : DialogFragment(R.layout.fragment_add_blog) {
         }
         binding.btnPost.setOnClickListener {
             uploadBlog()
-            dismiss()
+//            dismiss()
         }
     }
     private fun chooseImageDialog() {
@@ -101,6 +102,7 @@ class AddBlogFragment : DialogFragment(R.layout.fragment_add_blog) {
 
     @RequiresApi(Build.VERSION_CODES.O)
     private fun uploadBlog() {
+        Toast.makeText(requireContext(), "Lengkapi Data", Toast.LENGTH_SHORT).show()
         if (getFile != null) {
             val file = reduceFileImage(getFile as File)
             val tittle = binding.edtTitle.text.toString().toRequestBody("text/plain".toMediaType())
