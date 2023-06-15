@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">HydroAndroid</string>
+    <string name="app_name">HydroPlant</string>
     <string name="preference_file_key" translatable="false">hydro_grow_pref</string>
     <string name="email_invalid">Invalid Email</string>
     <string name="password_invalid">Password must be 6 characters</string>
