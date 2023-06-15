@@ -42,7 +42,7 @@ class CameraActivityDeteksi : AppCompatActivity() {
         binding = ActivityCameraDeteksiBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.btnAddPhoto.setOnClickListener {
+        binding.imgInputImgBlog.setOnClickListener {
             chooseImageDialog()
         }
         binding.btnPost.setOnClickListener {

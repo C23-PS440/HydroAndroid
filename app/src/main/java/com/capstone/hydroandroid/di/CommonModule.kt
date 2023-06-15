@@ -14,7 +14,7 @@ import java.util.concurrent.TimeUnit
 
 private const val BASE_URL = "https://37ee-2001-448a-5122-7016-65aa-da43-3a21-aa75.ngrok-free.app/latihan/"
 
-private const val BASE_URL_API = "https://202f-2001-448a-10c8-3993-483a-a5c0-7cd2-8c44.ngrok-free.app/"
+private const val BASE_URL_API = "https://release-glnz5e5urq-et.a.run.app/"
 
 val databaseModule = module {
 

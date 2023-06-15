@@ -24,7 +24,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:text="Judul Artikel"
+            tools:text="Judul Artikel"
             android:textAlignment="center"
             android:maxLines="2"
             android:textSize="30sp"
@@ -40,7 +40,7 @@
                 android:id="@+id/tv_nameUser"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="oleh Cindy Deviana"
+                tools:text="oleh Cindy Deviana"
                 android:layout_marginTop="20dp"/>
 
             <TextView
@@ -51,23 +51,10 @@
                 android:layout_marginLeft="5dp"/>
 
             <TextView
+                android:id="@+id/tv_dateCreated"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="2 Juni 2023"
-                android:layout_marginTop="20dp"
-                android:layout_marginLeft="5dp"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="•"
-                android:layout_marginTop="20dp"
-                android:layout_marginLeft="5dp"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="09:40 PM"
+                tools:text="14/06/2023 20:08:57"
                 android:layout_marginTop="20dp"
                 android:layout_marginLeft="5dp"/>
 
@@ -80,7 +67,7 @@
             android:layout_marginTop="20dp"
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"
-            android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis hendrerit dolor magna eget. Vitae semper quis lectus nulla at volutpat diam. Elementum facilisis leo vel fringilla est ullamcorper eget. Urna id volutpat lacus laoreet non. Donec ac odio tempor orci dapibus ultrices. Vel turpis nunc eget lorem. Eros donec ac odio tempor orci dapibus ultrices in. Interdum varius sit amet mattis vulputate. Aenean vel elit scelerisque mauris. Habitant morbi tristique senectus et netus et malesuada fames. In aliquam sem fringilla ut morbi tincidunt augue. Ut placerat orci nulla pellentesque dignissim enim sit amet venenatis. In est ante in nibh mauris cursus mattis. Eget felis eget nunc lobortis. Platea dictumst quisque sagittis purus sit amet volutpat. Dignissim sodales ut eu sem integer vitae justo. Facilisi cras fermentum odio eu feugiat pretium."
+            tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis hendrerit dolor magna eget. Vitae semper quis lectus nulla at volutpat diam. Elementum facilisis leo vel fringilla est ullamcorper eget. Urna id volutpat lacus laoreet non. Donec ac odio tempor orci dapibus ultrices. Vel turpis nunc eget lorem. Eros donec ac odio tempor orci dapibus ultrices in. Interdum varius sit amet mattis vulputate. Aenean vel elit scelerisque mauris. Habitant morbi tristique senectus et netus et malesuada fames. In aliquam sem fringilla ut morbi tincidunt augue. Ut placerat orci nulla pellentesque dignissim enim sit amet venenatis. In est ante in nibh mauris cursus mattis. Eget felis eget nunc lobortis. Platea dictumst quisque sagittis purus sit amet volutpat. Dignissim sodales ut eu sem integer vitae justo. Facilisi cras fermentum odio eu feugiat pretium."
             android:justificationMode="inter_word"
             android:textSize="16sp"
             android:textColor="#4D4D4D" />

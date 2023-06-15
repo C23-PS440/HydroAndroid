@@ -103,9 +103,9 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
     private fun getItems(): List<CarouselData> {
         val carouselDataList = mutableListOf<CarouselData>()
-        carouselDataList.add(CarouselData(R.drawable.hydro1))
-        carouselDataList.add(CarouselData(R.drawable.hydro2))
-        carouselDataList.add(CarouselData(R.drawable.hydro3))
+        carouselDataList.add(CarouselData(R.drawable.banner1))
+        carouselDataList.add(CarouselData(R.drawable.banner2))
+        carouselDataList.add(CarouselData(R.drawable.banner3))
         return carouselDataList
     }
 

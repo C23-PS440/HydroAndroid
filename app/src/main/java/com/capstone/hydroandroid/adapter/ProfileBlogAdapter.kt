@@ -13,7 +13,7 @@ class ProfileBlogAdapter (private val item : List<UserBlogItem>) : RecyclerView.
         return MainViewHolder(ItemBlogBinding.inflate(LayoutInflater.from(parent.context),parent,false))
     }
     override fun onBindViewHolder(holder: MainViewHolder, position: Int) {
-        holder.binding.tittleTextView.text= item[position].title
+        holder.binding.titleTextView.text= item[position].title
         val url = item[position].photoUrl
         Glide.with(holder.itemView.context)
             .load(url)

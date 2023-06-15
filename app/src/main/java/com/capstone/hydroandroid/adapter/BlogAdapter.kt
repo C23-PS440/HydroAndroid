@@ -15,7 +15,8 @@ class BlogAdapter (private val item : List<BlogsItem>) : RecyclerView.Adapter<Bl
         return MainViewHolder(ItemBlogBinding.inflate(LayoutInflater.from(parent.context),parent,false))
     }
     override fun onBindViewHolder(holder: MainViewHolder, position: Int) {
-        holder.binding.tittleTextView.text= item[position].blogTitle
+        holder.binding.titleTextView.text= item[position].blogTitle
+        holder.binding.descTextView.text = item[position].blogDescription
         val url = item[position].imageUrl
         Glide.with(holder.itemView.context)
             .load(url)
