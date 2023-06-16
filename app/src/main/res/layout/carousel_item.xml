@@ -13,6 +13,6 @@
         android:layout_height="wrap_content"
         android:contentDescription=""
         android:scaleType="centerCrop"
-        android:src="@drawable/hydro1" />
+        android:src="@drawable/banner1" />
 
 </androidx.cardview.widget.CardView>

@@ -7,8 +7,6 @@ import android.graphics.Matrix
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
-import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
@@ -21,7 +19,6 @@ import com.capstone.hydroandroid.R
 import com.capstone.hydroandroid.data.network.EventResult
 import com.capstone.hydroandroid.databinding.FragmentAddBlogBinding
 import com.capstone.hydroandroid.reduceFileImage
-import com.capstone.hydroandroid.rotateBitmap
 import com.capstone.hydroandroid.ui.MainActivity.Companion.CAMERA_X_RESULT
 import com.capstone.hydroandroid.ui.blog.BlogViewModel
 import com.capstone.hydroandroid.ui.camera.CameraActivity

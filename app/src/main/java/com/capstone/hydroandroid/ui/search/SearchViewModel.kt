@@ -5,7 +5,6 @@ import androidx.lifecycle.ViewModel
 import com.capstone.hydroandroid.data.network.EventResult
 import com.capstone.hydroandroid.data.network.response.search.SearchResponse
 import com.capstone.hydroandroid.source.search.SearchRepository
-import com.capstone.hydroandroid.storage.AppLocalData
 
 class SearchViewModel(private val repository: SearchRepository): ViewModel() {
     fun getSearchedBlog (query: String) : LiveData<EventResult<SearchResponse>> {

@@ -18,9 +18,6 @@ class ProfileBlogAdapter (private val item : List<UserBlogItem>) : RecyclerView.
         Glide.with(holder.itemView.context)
             .load(url)
             .into(holder.binding.photoImageView)
-//        holder.itemView.setOnClickListener {
-//            it.findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToDetailFragment(item[position].blogId))
-//        }
     }
     override fun getItemCount(): Int {
         return item.size

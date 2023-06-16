@@ -6,7 +6,6 @@ import com.capstone.hydroandroid.data.network.response.detail.DetailResponse
 import com.capstone.hydroandroid.data.network.response.home.HomeResponse
 import com.capstone.hydroandroid.data.network.response.pendeteksi.PredictResponse
 import com.capstone.hydroandroid.data.network.response.search.SearchResponse
-import com.capstone.hydroandroid.data.network.response.video.VideoResponse
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Response
@@ -31,9 +30,6 @@ interface BlogService {
     suspend fun getSearchedBlog(
         @Query("blogTitle") query : String
     ) : Response<SearchResponse>
-
-    @GET("video")
-    suspend fun getAllVideo():Response<VideoResponse>
 
     @GET("userPrivateBlogs")
     suspend fun getAllUserBlog() : Response<UserBlogResponse>

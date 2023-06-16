@@ -5,7 +5,6 @@ import androidx.lifecycle.liveData
 import com.capstone.hydroandroid.data.network.EventResult
 import com.capstone.hydroandroid.data.network.response.pendeteksi.PredictResponse
 import kotlinx.coroutines.Dispatchers
-import okhttp3.Dispatcher
 import okhttp3.MultipartBody
 import org.json.JSONObject
 

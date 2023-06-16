@@ -16,7 +16,6 @@ import com.capstone.hydroandroid.ui.custom.CustomInputPassword
 import com.capstone.hydroandroid.ui.custom.DialogFailedRegisterFragment
 import com.capstone.hydroandroid.ui.login.LoginActivity
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import org.koin.core.component.getScopeName
 
 class RegisterActivity : AppCompatActivity(){
     private lateinit var binding: ActivityRegisterBinding

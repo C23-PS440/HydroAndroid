@@ -13,9 +13,6 @@
         <action
             android:id="@+id/action_homeFragment_to_detailFragment"
             app:destination="@id/detailFragment" />
-        <action
-            android:id="@+id/action_navigation_home_to_videoFragment"
-            app:destination="@id/videoFragment" />
     </fragment>
     <fragment
         android:id="@+id/detailFragment"
@@ -42,18 +39,6 @@
         <action
             android:id="@+id/action_searchFragment_to_detailFragment"
             app:destination="@id/detailFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/videoFragment"
-        android:name="com.capstone.hydroandroid.ui.video.VideoFragment"
-        android:label="fragment_video"
-        tools:layout="@layout/fragment_video" >
-        <action
-            android:id="@+id/action_videoFragment_to_navigation_home"
-            app:destination="@id/navigation_home" />
-        <argument
-            android:name="videoUrl"
-            app:argType="string" />
     </fragment>
 
     <fragment

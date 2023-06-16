@@ -4,8 +4,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.liveData
 import com.capstone.hydroandroid.data.network.EventResult
 import com.capstone.hydroandroid.data.network.response.profile.ProfileResponse
-import com.capstone.hydroandroid.storage.AppLocalData
-import com.capstone.hydroandroid.storage.UserLoggedIn
 import kotlinx.coroutines.Dispatchers
 import org.json.JSONObject
 

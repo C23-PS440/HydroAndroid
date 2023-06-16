@@ -15,7 +15,6 @@ import androidx.camera.core.ImageCaptureException
 import androidx.camera.core.Preview
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.content.ContextCompat
-import com.capstone.hydroandroid.R
 import com.capstone.hydroandroid.createFile
 import com.capstone.hydroandroid.databinding.ActivityCameraBinding
 import com.capstone.hydroandroid.ui.MainActivity

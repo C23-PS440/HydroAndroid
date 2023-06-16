@@ -8,7 +8,6 @@ import com.bumptech.glide.Glide
 import com.capstone.hydroandroid.data.network.response.search.ResponseItem
 import com.capstone.hydroandroid.databinding.ItemBlogBinding
 import com.capstone.hydroandroid.ui.home.HomeFragmentDirections
-import com.capstone.hydroandroid.ui.search.SearchFragmentDirections
 
 class SearchAdapter(
     private val listUser: List<ResponseItem?>?

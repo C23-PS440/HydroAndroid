@@ -3,50 +3,22 @@ package com.capstone.hydroandroid.ui
 import android.Manifest
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.graphics.BitmapFactory
-import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import androidx.fragment.app.FragmentManager
 import androidx.navigation.findNavController
-import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.capstone.hydroandroid.R
-import com.capstone.hydroandroid.data.network.EventResult
 import com.capstone.hydroandroid.databinding.ActivityMainBinding
-import com.capstone.hydroandroid.reduceFileImage
-import com.capstone.hydroandroid.rotateBitmap
 import com.capstone.hydroandroid.ui.blog.addblog.AddBlogFragment
-import com.capstone.hydroandroid.ui.camera.CameraActivity
 import com.capstone.hydroandroid.ui.camera.CameraActivityDeteksi
-import com.capstone.hydroandroid.ui.camera.CameraFragment
-import com.capstone.hydroandroid.ui.camera.PendeteksiViewModel
-import com.capstone.hydroandroid.ui.home.HomeFragmentDirections
-import com.capstone.hydroandroid.ui.login.LoginViewModel
-import com.capstone.hydroandroid.uriToFile
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import okhttp3.MediaType.Companion.toMediaType
-import okhttp3.MediaType.Companion.toMediaTypeOrNull
-import okhttp3.MultipartBody
-import okhttp3.RequestBody.Companion.asRequestBody
-import okhttp3.RequestBody.Companion.toRequestBody
-import org.koin.androidx.viewmodel.ext.android.viewModel
-import java.io.File
-import java.time.LocalDateTime
-import java.time.format.DateTimeFormatter
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
-
-
-
 
     override fun onRequestPermissionsResult(
         requestCode: Int,
@@ -148,23 +120,8 @@ class MainActivity : AppCompatActivity() {
         binding.fab.setImageResource(R.drawable.camera)
     }
 
-
-//    private fun chooseImageDialog() {
-//        androidx.appcompat.app.AlertDialog.Builder(this)
-//            .setMessage("Pilih Gambar")
-//            .setPositiveButton("Gallery") { _, _ -> startGallery() }
-//            .setNegativeButton("Camera") { _, _ -> startCameraX() }
-//            .show()
-//    }
-
-
-
-
-
-
     companion object {
         const val CAMERA_X_RESULT = 200
-
         private val REQUIRED_PERMISSIONS = arrayOf(Manifest.permission.CAMERA)
         private const val REQUEST_CODE_PERMISSIONS = 10
     }
