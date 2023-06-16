@@ -1,7 +1,9 @@
 package com.capstone.hydroandroid.ui.blog.addblog
 
 import android.content.Intent
+import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.graphics.Matrix
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
@@ -48,7 +50,6 @@ class AddBlogFragment : DialogFragment(R.layout.fragment_add_blog) {
         }
         binding.btnPost.setOnClickListener {
             uploadBlog()
-//            dismiss()
         }
     }
     private fun chooseImageDialog() {
@@ -91,12 +92,19 @@ class AddBlogFragment : DialogFragment(R.layout.fragment_add_blog) {
             val myFile = it.data?.getSerializableExtra("picture") as File
             val isBackCamera = it.data?.getBooleanExtra("isBackCamera", true) as Boolean
             getFile = myFile
-            val result = rotateBitmap(
-                BitmapFactory.decodeFile(myFile.path),
-                isBackCamera
-            )
-            binding.imgInputImgBlog.setImageBitmap(result)
+
+            val rotation = if (isBackCamera) 0 else 180
+
+            val resultBitmap = BitmapFactory.decodeFile(myFile.path)
+            val rotatedBitmap = rotateBitmap(resultBitmap, rotation)
+
+            binding.imgInputImgBlog.setImageBitmap(rotatedBitmap)
         }
+    }
+
+    private fun rotateBitmap(bitmap: Bitmap, rotationDegrees: Int): Bitmap {
+        val matrix = Matrix().apply { postRotate(rotationDegrees.toFloat()) }
+        return Bitmap.createBitmap(bitmap, 0, 0, bitmap.width, bitmap.height, matrix, true)
     }
 
 

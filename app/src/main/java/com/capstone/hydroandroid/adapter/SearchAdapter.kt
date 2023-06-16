@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.capstone.hydroandroid.data.network.response.search.ResponseItem
 import com.capstone.hydroandroid.databinding.ItemBlogBinding
+import com.capstone.hydroandroid.ui.home.HomeFragmentDirections
 import com.capstone.hydroandroid.ui.search.SearchFragmentDirections
 
 class SearchAdapter(
@@ -23,10 +24,12 @@ class SearchAdapter(
                 .load(listUser?.get(position)?.imageUrl)
                 .into(holder.binding.photoImageView)
             holder.binding.titleTextView.text = listUser?.get(position)?.blogTitle
+            holder.binding.descTextView.text = listUser?.get(position)?.blogDescription
         }
         holder.itemView.setOnClickListener {
-            it.findNavController().navigate(SearchFragmentDirections.actionSearchFragmentToDetailFragment(
-                listUser?.get(position)?.blogId.toString()))
+            it.findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToDetailFragment(
+                listUser?.get(position)?.blogId.toString()
+            ))
         }
     }
     override fun getItemCount(): Int {

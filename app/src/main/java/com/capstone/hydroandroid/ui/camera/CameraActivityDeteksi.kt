@@ -2,7 +2,9 @@ package com.capstone.hydroandroid.ui.camera
 
 import android.app.Dialog
 import android.content.Intent
+import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.graphics.Matrix
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -62,19 +64,27 @@ class CameraActivityDeteksi : AppCompatActivity() {
         val intent = Intent(this, CameraActivity::class.java)
         launcherIntentCameraX.launch(intent)
     }
+
     private val launcherIntentCameraX = registerForActivityResult(
         ActivityResultContracts.StartActivityForResult()
-    ) {
-        if (it.resultCode == MainActivity.CAMERA_X_RESULT) {
-            val myFile = it.data?.getSerializableExtra("picture") as File
-            val isBackCamera = it.data?.getBooleanExtra("isBackCamera", true) as Boolean
+    ) { result ->
+        if (result.resultCode == MainActivity.CAMERA_X_RESULT) {
+            val myFile = result.data?.getSerializableExtra("picture") as File
+            val isBackCamera = result.data?.getBooleanExtra("isBackCamera", true) as Boolean
             getFile = myFile
-            val result = rotateBitmap(
-                BitmapFactory.decodeFile(myFile.path),
-                isBackCamera
-            )
-            binding.imgInputImgBlog.setImageBitmap(result)
+
+            val rotation = if (isBackCamera) 0 else 180
+
+            val resultBitmap = BitmapFactory.decodeFile(myFile.path)
+            val rotatedBitmap = rotateBitmap(resultBitmap, rotation)
+
+            binding.imgInputImgBlog.setImageBitmap(rotatedBitmap)
         }
+    }
+
+    private fun rotateBitmap(bitmap: Bitmap, rotationDegrees: Int): Bitmap {
+        val matrix = Matrix().apply { postRotate(rotationDegrees.toFloat()) }
+        return Bitmap.createBitmap(bitmap, 0, 0, bitmap.width, bitmap.height, matrix, true)
     }
 
 
@@ -89,7 +99,7 @@ class CameraActivityDeteksi : AppCompatActivity() {
     private val launcherIntentGallery = registerForActivityResult(
         ActivityResultContracts.StartActivityForResult()
     ) { result ->
-        if (result.resultCode == AppCompatActivity.RESULT_OK) {
+        if (result.resultCode == RESULT_OK) {
             val selectedImg: Uri = result.data?.data as Uri
             val myFile = uriToFile(selectedImg, this)
             getFile = myFile

@@ -1,6 +1,8 @@
 package com.capstone.hydroandroid.ui.camera
 
 import android.content.Intent
+import android.media.ExifInterface
+import android.net.Uri
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -64,12 +66,20 @@ class CameraActivity : AppCompatActivity() {
                 }
 
                 override fun onImageSaved(output: ImageCapture.OutputFileResults) {
+                    val savedUri = output.savedUri ?: Uri.fromFile(photoFile)
+
+                    val rotation = when (cameraSelector) {
+                        CameraSelector.DEFAULT_FRONT_CAMERA -> 270
+                        else -> 90
+                    }
+
+                    val exif = savedUri.path?.let { ExifInterface(it) }
+                    exif?.setAttribute(ExifInterface.TAG_ORIENTATION, rotation.toString())
+                    exif?.saveAttributes()
+
                     val intent = Intent()
                     intent.putExtra("picture", photoFile)
-                    intent.putExtra(
-                        "isBackCamera",
-                        cameraSelector == CameraSelector.DEFAULT_BACK_CAMERA
-                    )
+                    intent.putExtra("isBackCamera", cameraSelector == CameraSelector.DEFAULT_BACK_CAMERA)
                     setResult(MainActivity.CAMERA_X_RESULT, intent)
                     finish()
                 }
