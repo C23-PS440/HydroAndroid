@@ -13,4 +13,6 @@ The main function of Glide in Android is to load, display, and manage images eff
 
 **Coroutine:**  provide a way to write asynchronous code in a more sequential and readable manner.
 
-**Room:** Room is part of the Android Architecture Components. This feature makes working with SQLite easier for android developers. In addition, it can reduce the number of bloilerplate and SQL query verification process at compile time.
+## Mobile Development 
+- [A207DSX4940 - IMANUEL AGUNG PRAJA ROMUTY - University of Jember](https://github.com/ImanuelRomuty)
+- [A138DSY2058 - CINDY DEVIANA ATMAKUSUMA - Atma Jaya Makassar University](https://github.com/cyncindy)
